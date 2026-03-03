@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Projects - Rohit Mahar</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <style type="text/tailwindcss">
+    :root {
+            --bg-primary: #030712;
+            --bg-card: rgba(17, 24, 39, 0.4);
+            --text-primary: #F8FAFC;
+            --text-secondary: #94A3B8;
+            --accent-primary: #6366F1;
+            --accent-glow: rgba(99, 102, 241, 0.15);
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            background-image: 
+                radial-gradient(circle at 10% 20%, var(--accent-glow) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 20%);
+            background-attachment: fixed;
+        }
+        .glass-nav {
+            background: rgba(3, 7, 18, 0.6);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+        .modern-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .modern-card:hover {
+            transform: translateY(-2px) scale(1.005);
+            border-color: rgba(99, 102, 241, 0.3);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.1), 0 0 15px rgba(99, 102, 241, 0.1);
+        }
+        .floating-mockup {
+            transform: translateY(0);
+            transition: transform 0.5s ease-out;
+            box-shadow: 0 5px 15px -3px rgba(0, 0, 0, 0.5);
+        }
+        .modern-card:hover .floating-mockup {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px -3px rgba(0, 0, 0, 0.6);
+        }
+        .nav-link {
+            position: relative;
+        }
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--accent-primary);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--accent-primary);
+        }
+        .nav-link:not(.active):hover {
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen flex flex-col antialiased selection:bg-indigo-500/30 selection:text-indigo-200">
+  <header class="fixed top-0 w-full z-50 glass-nav">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex-shrink-0 flex items-center">
+          <a class="text-lg font-bold tracking-tight text-white hover:text-indigo-400 transition-colors" href="#">
+            Rohit Mahar
+          </a>
+        </div>
+        <nav class="hidden md:flex space-x-10">
+          <a class="nav-link text-xs uppercase tracking-widest font-semibold text-slate-400 transition-colors"
+            href="#">About</a>
+          <a class="nav-link active text-xs uppercase tracking-widest font-semibold text-white transition-colors"
+            href="#">Projects</a>
+          <a class="nav-link text-xs uppercase tracking-widest font-semibold text-slate-400 transition-colors"
+            href="#">Experience</a>
+          <a class="nav-link text-xs uppercase tracking-widest font-semibold text-slate-400 transition-colors"
+            href="#">Contact</a>
+        </nav>
+        <div class="hidden md:flex items-center space-x-6">
+          <button class="text-slate-400 hover:text-yellow-300 transition-colors p-1 rounded-full hover:bg-white/5">
+            <span class="material-symbols-outlined text-[20px] leading-none">light_mode</span>
+          </button>
+          <a class="inline-flex items-center justify-center px-4 py-1.5 border border-slate-700 hover:border-indigo-500/50 text-xs font-semibold rounded-full shadow-sm text-slate-300 hover:text-white bg-white/5 hover:bg-white/10 transition-all"
+            href="#">
+            Resume
+            <span class="material-symbols-outlined text-[14px] ml-1.5">download</span>
+          </a>
+        </div>
+        <div class="flex items-center md:hidden">
+          <button
+            class="inline-flex items-center justify-center p-2 rounded-md text-slate-400 hover:text-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+            type="button">
+            <span class="sr-only">Open main menu</span>
+            <span class="material-symbols-outlined">menu</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+  <main class="flex-grow pt-32 pb-24 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="max-w-3xl mb-12 mx-auto text-center">
+        <h1
+          class="text-3xl sm:text-5xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-indigo-100 to-indigo-200 mb-4">
+          Selected Works
+        </h1>
+        <p class="text-base text-slate-400 leading-relaxed max-w-2xl mx-auto font-light">
+          A curated collection of projects ranging from complex e-commerce clones to efficient utility tools.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <article class="modern-card group rounded-xl overflow-hidden flex flex-col h-full">
+          <div class="relative pt-4 px-4 pb-0 bg-gradient-to-b from-slate-800/20 to-transparent overflow-hidden">
+            <div
+              class="relative z-10 w-full aspect-[16/10] bg-slate-900 rounded-t-lg floating-mockup border-t border-x border-white/10 overflow-hidden">
+              <img alt="E-commerce Dashboard"
+                class="w-full h-full object-cover object-top transform scale-100 group-hover:scale-105 transition-transform duration-700"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTNrpRx1zTTbmuOu_moX1VIJxTtz_luGmYy4xckHToqmItj6NCE-QhP8rvZetSDFl7Skgdif4Iog5H0iYSJ4I7ZpCQ8K0KIiPr-i3RrhNEaEjZy8IJLks4mGmFj85m49CcHRIoCVrclPMbsMQaO9E06uJSU9bOPEef7Oip64tn4_beflKzBUxgcNfKhpVhU5nGG1v0BCZ7tloqmxIkGJVEr6w3sXy1rtFnYOuLgR5CZWaaDgkSHcZ5GNFMi0uoov_okvqMxAWI3JAU" />
+              <div class="absolute inset-0 bg-indigo-500/10 mix-blend-overlay"></div>
+            </div>
+            <div
+              class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-indigo-500/5 to-transparent pointer-events-none">
+            </div>
+          </div>
+          <div class="p-4 flex flex-col flex-grow relative">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="text-base font-bold text-white tracking-tight group-hover:text-indigo-300 transition-colors">
+                Meesho Clone</h3>
+            </div>
+            <p class="text-slate-400 mb-4 leading-relaxed text-[11px] line-clamp-3">
+              A robust e-commerce platform clone featuring reusable components, dynamic search functionality, and a
+              persistent cart system. Built to handle complex state management.
+            </p>
+            <div class="flex flex-wrap gap-1.5 mb-4 mt-auto">
+              <span
+                class="px-2 py-0.5 text-[9px] font-semibold tracking-wide uppercase text-indigo-300 bg-indigo-500/10 rounded-full">React.js</span>
+              <span
+                class="px-2 py-0.5 text-[9px] font-semibold tracking-wide uppercase text-slate-300 bg-slate-800/50 rounded-full">JavaScript</span>
+              <span
+                class="px-2 py-0.5 text-[9px] font-semibold tracking-wide uppercase text-slate-300 bg-slate-800/50 rounded-full">CSS</span>
+            </div>
+            <div class="flex items-center gap-3 mt-auto">
+              <a class="flex-1 inline-flex justify-center items-center px-4 py-2 text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-500 rounded-md transition-colors shadow-sm"
+                href="#">
+                Live Demo
+              </a>
+              <a class="flex-1 inline-flex justify-center items-center px-4 py-2 text-xs font-semibold text-slate-300 bg-transparent border border-slate-700 hover:border-slate-500 hover:text-white rounded-md transition-colors hover:bg-slate-800/50"
+                href="#">
+                GitHub
+              </a>
+            </div>
+          </div>
+        </article>
+        <article class="modern-card group rounded-xl overflow-hidden flex flex-col h-full">
+          <div class="relative pt-4 px-4 pb-0 bg-gradient-to-b from-slate-800/20 to-transparent overflow-hidden">
+            <div
+              class="relative z-10 w-full aspect-[16/10] bg-slate-900 rounded-t-lg floating-mockup border-t border-x border-white/10 overflow-hidden">
+              <img alt="Financial Dashboard"
+                class="w-full h-full object-cover object-top transform scale-100 group-hover:scale-105 transition-transform duration-700"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDt6PaPlMduLl8jBmmySNcwrDKGMprYYibC30Lj5tuD33YQTOPdZ0WMWapKTBZIKOhnTLovKCqhEB2Ucp6k4FOptAjEKKOQGETIFj-1UjwxslEL7uLejHmMwarZYg07-2sS1E4GseZ-XaQKV7ytsU0hu7m5S6wvUtmtRinkrqsEMit4BJFTQga20SBD-sBXLpLhVUnEz0jtsh8opsg9_JvTFxWdHrdKA-uhevY8I4y00zCxWqB3KG948PR-H8jwLoLDHv79Zabz7o6R" />
+              <div class="absolute inset-0 bg-indigo-500/10 mix-blend-overlay"></div>
+            </div>
+            <div
+              class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-indigo-500/5 to-transparent pointer-events-none">
+            </div>
+          </div>
+          <div class="p-4 flex flex-col flex-grow relative">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="text-base font-bold text-white tracking-tight group-hover:text-indigo-300 transition-colors">
+                Budget Tracker</h3>
+            </div>
+            <p class="text-slate-400 mb-4 leading-relaxed text-[11px] line-clamp-3">
+              A comprehensive financial management tool enabling users to track expenses and incomes. Features CRUD
+              operations and localStorage data persistence.
+            </p>
+            <div class="flex flex-wrap gap-1.5 mb-4 mt-auto">
+              <span
+                class="px-2 py-0.5 text-[9px] font-semibold tracking-wide uppercase text-indigo-300 bg-indigo-500/10 rounded-full">React</span>
+              <span
+                class="px-2 py-0.5 text-[9px] font-semibold tracking-wide uppercase text-slate-300 bg-slate-800/50 rounded-full">JS</span>
+              <span
+                class="px-2 py-0.5 text-[9px] font-semibold tracking-wide uppercase text-slate-300 bg-slate-800/50 rounded-full">Bootstrap</span>
+            </div>
+            <div class="flex items-center gap-3 mt-auto">
+              <a class="flex-1 inline-flex justify-center items-center px-4 py-2 text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-500 rounded-md transition-colors shadow-sm"
+                href="#">
+                Live Demo
+              </a>
+              <a class="flex-1 inline-flex justify-center items-center px-4 py-2 text-xs font-semibold text-slate-300 bg-transparent border border-slate-700 hover:border-slate-500 hover:text-white rounded-md transition-colors hover:bg-slate-800/50"
+                href="#">
+                GitHub
+              </a>
+            </div>
+          </div>
+        </article>
+        <article class="modern-card group rounded-xl overflow-hidden flex flex-col h-full">
+          <div class="relative pt-4 px-4 pb-0 bg-gradient-to-b from-slate-800/20 to-transparent overflow-hidden">
+            <div
+              class="relative z-10 w-full aspect-[16/10] bg-slate-900 rounded-t-lg floating-mockup border-t border-x border-white/10 overflow-hidden">
+              <img alt="Dictionary App Interface"
+                class="w-full h-full object-cover object-top transform scale-100 group-hover:scale-105 transition-transform duration-700"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuHQbg8Ume_seyp4TYkl_zMB2x4WbPrz8MI2vUTdQ9gXRxhoo7-BNLDMfrKXfBRImaiZO1JcbbqnIXYuT7MBRYnazY1XT8nlqf3zgU2CCaRzXrdRJWEGPGt7FzFmdfVFClhpPygye_PmL4IDN0XI77DzPlK-D4ISV9rdKPFgIU8D0GgSlmMEvCMldyYZQqiVnFaLJib52MLWW1xwPS77UWQ-h9dBOxYEKAt84mjgdn3s2iyjby_OYUE1VrlDeWyMWSnri__mrIfd6h" />
+              <div class="absolute inset-0 bg-indigo-500/10 mix-blend-overlay"></div>
+            </div>
+            <div
+              class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-indigo-500/5 to-transparent pointer-events-none">
+            </div>
+          </div>
+          <div class="p-4 flex flex-col flex-grow relative">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="text-base font-bold text-white tracking-tight group-hover:text-indigo-300 transition-colors">
+                Dictionary App</h3>
+            </div>
+            <p class="text-slate-400 mb-4 leading-relaxed text-[11px] line-clamp-3">
+              An elegant reference tool leveraging external APIs to fetch word definitions, synonyms, and phonetics.
+              Includes a search history feature and is fully responsive.
+            </p>
+            <div class="flex flex-wrap gap-1.5 mb-4 mt-auto">
+              <span
+                class="px-2 py-0.5 text-[9px] font-semibold tracking-wide uppercase text-slate-300 bg-slate-800/50 rounded-full">HTML</span>
+              <span
+                class="px-2 py-0.5 text-[9px] font-semibold tracking-wide uppercase text-slate-300 bg-slate-800/50 rounded-full">JS</span>
+              <span
+                class="px-2 py-0.5 text-[9px] font-semibold tracking-wide uppercase text-teal-300 bg-teal-500/10 rounded-full">API</span>
+            </div>
+            <div class="flex items-center gap-3 mt-auto">
+              <a class="flex-1 inline-flex justify-center items-center px-4 py-2 text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-500 rounded-md transition-colors shadow-sm"
+                href="#">
+                Live Demo
+              </a>
+              <a class="flex-1 inline-flex justify-center items-center px-4 py-2 text-xs font-semibold text-slate-300 bg-transparent border border-slate-700 hover:border-slate-500 hover:text-white rounded-md transition-colors hover:bg-slate-800/50"
+                href="#">
+                GitHub
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </main>
+  <footer class="border-t border-slate-800/60 bg-[#020617] mt-auto relative z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="flex flex-col items-center justify-center space-y-4">
+        <div class="flex items-center space-x-8">
+          <a class="text-slate-500 hover:text-indigo-400 transition-colors flex items-center gap-2 group" href="#">
+            <span class="material-symbols-outlined text-lg">mail</span>
+            <span class="text-xs font-semibold tracking-wide uppercase hidden sm:inline">Email</span>
+          </a>
+          <a class="text-slate-500 hover:text-indigo-400 transition-colors flex items-center gap-2 group" href="#">
+            <span class="text-lg">
+              <svg class="w-5 h-5 fill-current" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <title>GitHub</title>
+                <path
+                  d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12">
+                </path>
+              </svg>
+            </span>
+            <span class="text-xs font-semibold tracking-wide uppercase hidden sm:inline">GitHub</span>
+          </a>
+          <a class="text-slate-500 hover:text-indigo-400 transition-colors flex items-center gap-2 group" href="#">
+            <span class="text-lg">
+              <svg class="w-5 h-5 fill-current" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <title>LinkedIn</title>
+                <path
+                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z">
+                </path>
+              </svg>
+            </span>
+            <span class="text-xs font-semibold tracking-wide uppercase hidden sm:inline">LinkedIn</span>
+          </a>
+          <a class="text-slate-500 hover:text-indigo-400 transition-colors flex items-center gap-2 group" href="#">
+            <span class="material-symbols-outlined text-lg">code</span>
+            <span class="text-xs font-semibold tracking-wide uppercase hidden sm:inline">LeetCode</span>
+          </a>
+        </div>
+        <p class="text-[10px] text-slate-600 font-medium">
+          © 2024 Rohit Mahar. All rights reserved. Built with precision.
+        </p>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>
