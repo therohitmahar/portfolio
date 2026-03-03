@@ -12,7 +12,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://therohitmahar.com"), // Placeholder, update if needed
+  metadataBase: new URL("https://rohitmahar.vercel.app"),
   title: "Rohit Mahar | Front-End Developer Portfolio",
   description:
     "Front-End Developer specializing in React.js, Next.js, and modern JavaScript. Building scalable, high-performance web applications with clean architecture and premium UI/UX.",
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Rohit Mahar | Front-End Developer Portfolio",
     description: "Front-End Developer specializing in React.js and modern JavaScript. Explore my selected works and professional experience.",
-    url: "https://therohitmahar.com",
+    url: "https://rohitmahar.vercel.app",
     siteName: "Rohit Mahar Portfolio",
     images: [
       {
