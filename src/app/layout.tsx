@@ -1,78 +1,74 @@
 import type { Metadata } from "next";
-import { Space_Grotesk } from "next/font/google";
-import { ThemeProvider } from "@/components/ThemeProvider";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import Link from "next/link";
 import "./globals.css";
-
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-display",
-  subsets: ["latin"],
-  weight: ["400", "500", "700"],
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://rohitmahar.vercel.app"),
-  title: "Rohit Mahar | Front-End Developer Portfolio",
+  title: {
+    default: "Rohit Mahar — Frontend Developer",
+    template: "%s | Rohit Mahar",
+  },
   description:
-    "Front-End Developer specializing in React.js, Next.js, and modern JavaScript. Building scalable, high-performance web applications with clean architecture and premium UI/UX.",
-  keywords: ["Front-End Developer", "React Developer", "Next.js", "Portfolio", "Software Engineer", "Web Development", "UI/UX"],
-  authors: [{ name: "Rohit Mahar" }],
+    "Frontend developer in Mumbai. React and Next.js product work, developer tools, and UI/UX explorations.",
   openGraph: {
-    title: "Rohit Mahar | Front-End Developer Portfolio",
-    description: "Front-End Developer specializing in React.js and modern JavaScript. Explore my selected works and professional experience.",
-    url: "https://rohitmahar.vercel.app",
-    siteName: "Rohit Mahar Portfolio",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Rohit Mahar Front-End Developer Portfolio",
-      },
-    ],
-    locale: "en_US",
+    title: "Rohit Mahar — Frontend Developer",
+    description: "Product interfaces, developer tools, and project notes.",
     type: "website",
+    locale: "en_IN",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Rohit Mahar | Front-End Developer Portfolio",
-    description: "Front-End Developer specializing in React.js and modern JavaScript. Explore my selected works and professional experience.",
-    images: ["/og-image.png"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
+  twitter: { card: "summary" },
 };
-
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
-      <head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-          rel="stylesheet"
-        />
-      </head>
-      <body className={`${spaceGrotesk.variable} font-display antialiased`}>
-        <ThemeProvider>
-          <div className="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
-            <div className="flex h-full grow flex-col">
-              <Navbar />
-              <div className="px-4 sm:px-10 lg:px-40 flex flex-1 justify-center py-5">
-                <div className="flex flex-col w-full max-w-[1200px] flex-1">
-                  {children}
-                  <Footer />
-                </div>
-              </div>
+    <html lang="en">
+      <body>
+        <a className="skip-link" href="#main">
+          Skip to content
+        </a>
+        <div className="site-shell">
+          <header className="site-header">
+            <Link className="identity" href="/" aria-label="Rohit Mahar — home">
+              rm
+            </Link>
+            <nav aria-label="Main navigation">
+              <Link href="/work">Work</Link>
+              <Link href="/projects">Projects</Link>
+              <Link href="/about">About</Link>
+              <a href="/rohit-mahar-resume.pdf">
+                Resume <span aria-hidden="true">↗</span>
+              </a>
+            </nav>
+          </header>
+          <main id="main">{children}</main>
+          <footer id="contact" className="site-footer">
+            <div>
+              <span className="footer-label">Contact</span>
+              <a className="email-link" href="mailto:therohitmahar@gmail.com">
+                therohitmahar@gmail.com
+              </a>
             </div>
-          </div>
-        </ThemeProvider>
+            <div className="footer-links">
+              <a
+                href="https://github.com/therohitmahar"
+                target="_blank"
+                rel="noreferrer"
+              >
+                GitHub ↗
+              </a>
+              <a
+                href="https://www.linkedin.com/in/therohitmahar/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                LinkedIn ↗
+              </a>
+              <Link href="/contact">Contact details</Link>
+            </div>
+            <p>Mumbai, India</p>
+          </footer>
+        </div>
       </body>
     </html>
   );

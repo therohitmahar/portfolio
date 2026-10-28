@@ -1,36 +1,32 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Rohit Mahar — portfolio
 
-## Getting Started
+A Next.js portfolio with product notes, a filterable project archive, interface redesign notes, developer tools, and direct contact links.
 
-First, run the development server:
+## Run locally
 
-```bash
+```sh
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000. Use `npm run build` followed by `npm start` for a production preview.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Content
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `src/data/work.ts`: curated projects, implementation notes, and verified public source links.
+- `src/components/Portfolio.tsx`: homepage sections, archive filters, and small interaction demos.
+- `/work`: professional experience and LineupX contributions.
+- `/projects`: personal projects, developer tools, and interface explorations.
+- `src/app/projects/[slug]/page.tsx`: personal project detail pages.
+- `src/app/work/[slug]/page.tsx`: professional detail pages and redirects for previous project URLs.
+- `src/components/ProjectDetail.tsx`: shared project-note presentation.
+- `src/app/globals.css`: responsive layout, typography, focus states, and reduced-motion support.
+- `public/rohit-mahar-resume.pdf`: updated resume.
 
-## Learn More
+The project visuals are interactive explanations, not screenshots or live integrations. They use sample state and reset on reload. The LineupX settings redesign is described in text. ClearMind is presented as a UI exploration. Only repositories verified as public have source links.
 
-To learn more about Next.js, take a look at the following resources:
+Existing images and the earlier `src/data/projects.ts` remain available, but the redesigned pages use `src/data/work.ts`. Existing route addresses (`/about`, `/projects`, `/experience`, `/contact`) remain supported.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Verification
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Run `npx tsc --noEmit` and `npm run build`. Before publishing, also check desktop and mobile layouts, keyboard navigation, archive filters, project demos, the resume, and outbound links in a browser.

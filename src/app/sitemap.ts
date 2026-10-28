@@ -1,38 +1,16 @@
-import { MetadataRoute } from 'next'
- 
+import type { MetadataRoute } from "next";
+import { work, projectHref } from "@/data/work";
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://rohitmahar.vercel.app'
-  
   return [
-    {
-      url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 1,
-    },
-    {
-      url: `${baseUrl}/about`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/projects`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/experience`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/contact`,
-      lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 0.5,
-    },
-  ]
+    "",
+    "/about",
+    "/projects",
+    "/work",
+    "/contact",
+    ...work.map(projectHref),
+  ].map((path) => ({
+    url: `https://rohitmahar.vercel.app${path}`,
+    changeFrequency: "monthly",
+    priority: path ? 0.7 : 1,
+  }));
 }
