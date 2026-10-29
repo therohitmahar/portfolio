@@ -1,6 +1,6 @@
 # Rohit Mahar — portfolio
 
-A Next.js portfolio with product notes, a filterable project archive, interface redesign notes, developer tools, and direct contact links.
+A Next.js portfolio for professional frontend work, personal apps, developer tools, and UI explorations. The approved design baseline is `portfolio-landmark-2026-10-28`.
 
 ## Run locally
 
@@ -9,24 +9,61 @@ npm install
 npm run dev
 ```
 
-Open http://localhost:3000. Use `npm run build` followed by `npm start` for a production preview.
+Open http://localhost:3000. For a production preview:
 
-## Content
+```sh
+npm run build
+npm run start -- --port 3016
+```
 
-- `src/data/work.ts`: curated projects, implementation notes, and verified public source links.
-- `src/components/Portfolio.tsx`: homepage sections, archive filters, and small interaction demos.
-- `/work`: professional experience and LineupX contributions.
-- `/projects`: personal projects, developer tools, and interface explorations.
-- `src/app/projects/[slug]/page.tsx`: personal project detail pages.
-- `src/app/work/[slug]/page.tsx`: professional detail pages and redirects for previous project URLs.
-- `src/components/ProjectDetail.tsx`: shared project-note presentation.
-- `src/app/globals.css`: responsive layout, typography, focus states, and reduced-motion support.
-- `public/rohit-mahar-resume.pdf`: updated resume.
+## Structure
 
-The project visuals are interactive explanations, not screenshots or live integrations. They use sample state and reset on reload. The LineupX settings redesign is described in text. ClearMind is presented as a UI exploration. Only repositories verified as public have source links.
+- `/`: short introduction and links to professional work and personal projects.
+- `/work`: LineupX experience and contributions. Candidate-field settings stays text-only.
+- `/projects`: filterable archive of 8 projects, plus earlier builds.
+- `/projects/[slug]`: personal product and tool notes.
+- `/work/lineupx-settings`: professional redesign notes.
+- `/about`: background, approach, UI/UX interest, skills, and education.
+- `/contact`: email, copy action, and professional profiles.
+- `/experience` and old `/work/[personal-project]` addresses redirect to the current routes.
 
-Existing images and the earlier `src/data/projects.ts` remain available, but the redesigned pages use `src/data/work.ts`. Existing route addresses (`/about`, `/projects`, `/experience`, `/contact`) remain supported.
+`src/data/work.ts` owns project identity and public links. `src/data/stories.ts` owns the implementation stories and media. The earlier `src/data/projects.ts` and legacy image edits are preserved but are not used by the redesigned pages.
+
+Shared tokens live in `src/app/tokens.css`; shared patterns and page layouts live in `globals.css`. `UI.tsx` provides page introductions, links, project metadata, screenshots, and code-based illustrations. See [the design system](design/DESIGN_SYSTEM.md).
+
+The site follows the system colour scheme by default. The header toggle supports an explicit opposite scheme, persistence, and tab synchronisation. Switching back to the current system scheme restores automatic appearance. Screenshots retain their original product colours.
+
+## Media and content
+
+Actual project screenshots are stored under `public/project-media/`, with a capture manifest. The PR Tracker landing has a built-in sample dashboard; Next Shelf uses an isolated demonstration library. Tool visuals are labelled usage illustrations. Interactive explanations on the three product detail pages are sample models, not integrations. ClearMind is a UI exploration with no connected booking-delivery service.
+
+Public source links are restricted to repositories verified as public. Source evidence and qualifications are recorded in [SOURCE_EVIDENCE.md](design/SOURCE_EVIDENCE.md). The current resume is `public/rohit-mahar-resume.pdf`.
 
 ## Verification
 
-Run `npx tsc --noEmit` and `npm run build`. Before publishing, also check desktop and mobile layouts, keyboard navigation, archive filters, project demos, the resume, and outbound links in a browser.
+```sh
+npx tsc --noEmit
+npm run build
+```
+
+The Playwright script uses a locally installed or npm-cached Playwright package. When direct browser launches are unavailable, start a dedicated Chrome profile from Terminal:
+
+```sh
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+  --remote-debugging-address=127.0.0.1 \
+  --remote-debugging-port=9222 \
+  --user-data-dir=/tmp/rohit-portfolio-browser \
+  http://localhost:3016
+```
+
+Then run:
+
+```sh
+PLAYWRIGHT_CDP_URL=http://127.0.0.1:9222 \
+PORTFOLIO_URL=http://localhost:3016 \
+node scripts/verify-portfolio.cjs
+```
+
+The verifier checks every current content route and 404 at 320, 390, 768, and 1440px in both themes. It also checks filters, copy success/failure, keyboard focus, theme persistence, cross-tab/system changes, demos, redirects, and internal targets. Reports and screenshots are saved under ignored `output/review/final/`. It creates and closes isolated browser contexts; it does not use your personal browser session.
+
+Run browser QA commands sequentially when attaching to the same Chrome instance. Separate concurrent Playwright connections can interfere with emulated colour-scheme state.

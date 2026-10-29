@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import SiteHeader from "@/components/SiteHeader";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -23,25 +24,27 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
+      <head>
+        <meta
+          name="color-scheme"
+          content="light dark"
+          suppressHydrationWarning
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{var s=localStorage.getItem("portfolio-color-scheme");if(s==="light"||s==="dark")document.querySelector('meta[name="color-scheme"]').content=s}catch{}`,
+          }}
+        />
+      </head>
       <body>
         <a className="skip-link" href="#main">
           Skip to content
         </a>
         <div className="site-shell">
-          <header className="site-header">
-            <Link className="identity" href="/" aria-label="Rohit Mahar — home">
-              rm
-            </Link>
-            <nav aria-label="Main navigation">
-              <Link href="/work">Work</Link>
-              <Link href="/projects">Projects</Link>
-              <Link href="/about">About</Link>
-              <a href="/rohit-mahar-resume.pdf">
-                Resume <span aria-hidden="true">↗</span>
-              </a>
-            </nav>
-          </header>
-          <main id="main">{children}</main>
+          <SiteHeader />
+          <main id="main" tabIndex={-1}>
+            {children}
+          </main>
           <footer id="contact" className="site-footer">
             <div>
               <span className="footer-label">Contact</span>
@@ -65,6 +68,7 @@ export default function RootLayout({
                 LinkedIn ↗
               </a>
               <Link href="/contact">Contact details</Link>
+              <a href="/rohit-mahar-resume.pdf">Resume ↗</a>
             </div>
             <p>Mumbai, India</p>
           </footer>

@@ -1,0 +1,65 @@
+{
+  "pr-tracker.webp": {
+    "width": 1440,
+    "height": 1000,
+    "source": "http://localhost:3021/",
+    "caption": "PR Tracker landing page with its built-in sample dashboard. Preview numbers are illustrative.",
+    "capture": "Rendered directly from the local source. No authentication or account data used."
+  },
+  "context-flow-ai.webp": {
+    "width": 1440,
+    "height": 1000,
+    "source": "Local retained production build, blank /flow draft",
+    "caption": "Context Flow AI editor: two built-in context blocks connected to the composer in a local draft.",
+    "capture": "Captured the actual app after adding existing library blocks, arranging nodes, and connecting them with the UI. No generation request, sign-in, or cloud save."
+  },
+  "next-shelf.webp": {
+    "width": 390,
+    "height": 844,
+    "source": "https://app-next-shelf.vercel.app/ (isolated local library, Dune detail screen)",
+    "caption": "Next Shelf reading-progress screen with a public Open Library book added to an isolated demonstration library.",
+    "capture": "Actual mobile web app, real Dune catalog result. The Reading status is local demonstration state; no real user activity or adoption is implied. Context discarded after capture."
+  },
+  "next-shelf-detail.webp": {
+    "width": 1440,
+    "height": 1000,
+    "source": "https://app-next-shelf.vercel.app/search",
+    "caption": "Next Shelf search result with reading-status choices before adding a book.",
+    "capture": "Actual app drawer opened for Dune. No book was saved."
+  },
+  "next-shelf-app.webp": {
+    "width": 1440,
+    "height": 1000,
+    "source": "https://app-next-shelf.vercel.app/",
+    "caption": "Next Shelf home screen with an empty on-device library.",
+    "capture": "Actual app in a fresh browser context."
+  },
+  "clearmind.webp": {
+    "width": 811,
+    "height": 746,
+    "source": "https://clearmindcounseling.vercel.app/booking",
+    "caption": "ClearMind booking interface: choosing session mode, date, and time.",
+    "capture": "Actual rendered scheduling section. Therapist selection changed only local page state; no booking request submitted. Cropped to the schedule panel because external therapist images fail to load."
+  },
+  "next-shelf-search.webp": {
+    "width": 1440,
+    "height": 1000,
+    "source": "https://app-next-shelf.vercel.app/search",
+    "caption": "Next Shelf web app searching Open Library for Dune. Results are public catalog data.",
+    "capture": "Actual public web app, isolated browser context. Search only; no library mutation."
+  },
+  "next-shelf-mobile.webp": {
+    "width": 390,
+    "height": 844,
+    "source": "https://app-next-shelf.vercel.app/",
+    "caption": "Next Shelf library with a single sample book in reading state.",
+    "capture": "Actual isolated local demonstration library."
+  },
+  "next-shelf-mobile-detail.webp": {
+    "width": 390,
+    "height": 844,
+    "source": "https://app-next-shelf.vercel.app/ (isolated local library, Dune detail screen)",
+    "caption": "Next Shelf reading-progress screen with a public Open Library book added to an isolated demonstration library.",
+    "capture": "Actual mobile web app, real Dune catalog result. The Reading status is local demonstration state; no real user activity or adoption is implied. Context discarded after capture."
+  }
+}

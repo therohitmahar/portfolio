@@ -1,0 +1,87 @@
+:root {
+  color-scheme: light dark;
+  --paper: #fafaf6;
+  --ink: #262923;
+  --muted: #62665c;
+  --line: #dedfd5;
+  --accent: #e8edab;
+  --accent-ink: #262923;
+  --link: #364e37;
+  --surface-flow: #eeece3;
+  --surface-shelf: #e8e4dc;
+  --surface-settings: #eff0e7;
+  --panel-border: #cccbbf;
+  --node-border: #737d3d;
+  --code: #4e5e2b;
+  --separator: #9a9d90;
+  --period: #7c8540;
+  --brand-slash: #687137;
+}
+:root:has(> head > meta[name="color-scheme"][content="light"]) {
+  color-scheme: light;
+}
+:root:has(> head > meta[name="color-scheme"][content="dark"]) {
+  color-scheme: dark;
+  --paper: #1b1e19;
+  --ink: #f0f0e6;
+  --muted: #b4b9a9;
+  --line: #3d4337;
+  --accent: #dce597;
+  --accent-ink: #25291b;
+  --link: #e0e9ac;
+  --surface-flow: #282e25;
+  --surface-shelf: #2d2d25;
+  --surface-settings: #282e25;
+  --panel-border: #555d4b;
+  --node-border: #bac67a;
+  --code: #d5e2a1;
+  --separator: #969f87;
+  --period: #dce597;
+  --brand-slash: #dce597;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not(:has(> head > meta[name="color-scheme"][content="light"])) {
+    --paper: #1b1e19;
+    --ink: #f0f0e6;
+    --muted: #b4b9a9;
+    --line: #3d4337;
+    --accent: #dce597;
+    --accent-ink: #25291b;
+    --link: #e0e9ac;
+    --surface-flow: #282e25;
+    --surface-shelf: #2d2d25;
+    --surface-settings: #282e25;
+    --panel-border: #555d4b;
+    --node-border: #bac67a;
+    --code: #d5e2a1;
+    --separator: #969f87;
+    --period: #dce597;
+    --brand-slash: #dce597;
+  }
+}
+
+:root {
+  --font-body: Arial, Helvetica, sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --type-caption: 0.75rem;
+  --type-small: 0.875rem;
+  --type-body: 1rem;
+  --type-lead: clamp(1.125rem, 1rem + 0.3vw, 1.25rem);
+  --type-h2: clamp(1.5rem, 1.2rem + 0.7vw, 2rem);
+  --type-h3: 1.25rem;
+  --type-page: clamp(2.5rem, 1.2rem + 4vw, 4.5rem);
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 5rem;
+  --space-10: 6rem;
+  --width-site: 90rem;
+  --width-reading: 43rem;
+  --radius-control: 0.2rem;
+  --border-rule: 1px solid var(--line);
+}
