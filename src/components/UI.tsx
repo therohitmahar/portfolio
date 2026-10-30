@@ -88,7 +88,7 @@ export function ProjectMedia({
   if (!media) return <ToolArtwork slug={slug} compact={compact} />;
   return (
     <figure className={`project-figure media-${slug}`}>
-      <div className="project-image">
+      <div className="project-image" data-project-cover={slug}>
         <Image
           src={media.src}
           alt={media.alt}

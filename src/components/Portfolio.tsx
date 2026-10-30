@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import BrandSlash from "./BrandSlash";
+import HeroSlash from "./HeroSlash";
 import ArrowIcon from "./ArrowIcon";
 export default function Portfolio() {
   return (
@@ -11,8 +11,7 @@ export default function Portfolio() {
           <span>React / Next.js / TypeScript</span>
         </div>
         <h1 className="hero-title">
-          <span className="hero-name">Rohit Mahar</span>{" "}
-          <BrandSlash className="hero-separator" />{" "}
+          <span className="hero-name">Rohit Mahar</span> <HeroSlash />{" "}
           <span className="hero-role">
             Frontend developer<span className="period">.</span>
           </span>

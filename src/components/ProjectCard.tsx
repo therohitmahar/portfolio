@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { ProjectLink } from "./ProjectMotion";
 import { type Work, projectHref } from "@/data/work";
 import { stories } from "@/data/stories";
 import { ProjectMedia } from "./UI";
@@ -12,16 +12,19 @@ export default function ProjectCard({
 }) {
   return (
     <article className={`project-card card-${p.slug}`}>
-      <Link
+      <ProjectLink
+        slug={p.slug}
         className="project-cover-link"
         href={projectHref(p)}
         aria-label={`Read ${p.name} project notes`}
       >
         <ProjectMedia slug={p.slug} priority={priority} compact />
-      </Link>
+      </ProjectLink>
       <div className="project-card-copy">
         <h2>
-          <Link href={projectHref(p)}>{p.name}</Link>
+          <ProjectLink slug={p.slug} href={projectHref(p)}>
+            {p.name}
+          </ProjectLink>
         </h2>
         <p>{p.description}</p>
         <p className="project-evidence">{stories[p.slug].takeaway}</p>
@@ -30,9 +33,9 @@ export default function ProjectCard({
           <span>{p.stack}</span>
         </div>
         <div className="project-links">
-          <Link href={projectHref(p)}>
+          <ProjectLink slug={p.slug} href={projectHref(p)}>
             Read project notes <ArrowIcon direction="right" />
-          </Link>
+          </ProjectLink>
           {p.live && (
             <a href={p.live} target="_blank" rel="noreferrer">
               {p.kind === "Tool" ? "Open tool" : "Visit project"}

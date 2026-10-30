@@ -118,3 +118,13 @@ Contact actions use a shared grid: the email link and copy button occupy the act
 BrandLogo renders the supplied RM path geometry as inline SVG, allowing CSS theme colours to apply directly. The r uses `--brand-slash` and the m uses `--ink`: light #687137 / #262923; dark #dce597 / #f0f0e6. No website palette tokens changed. The header mark is 44px wide with its original 920:560 aspect ratio, inside a 44px-minimum home link. The link owns the accessible name; the SVG is decorative and nonfocusable.
 
 `src/app/icon.svg` uses the same paths on a charcoal square with the existing dark-theme pair. `favicon.ico` supplies 16/32/48/64px raster fallbacks; `apple-icon.png` supplies an opaque 180px square for Apple touch icons. These are derived from the SVG, not separate logo drawings. They retain the same palette and shape, with practical small-size limits on the curved separation.
+
+## Interaction motion
+
+Use motion to connect a clicked project to its detail view, preserve card position during filtering, or identify the active route. Motion durations stay between 200–240ms with the existing ease-out curve. Avoid looping decoration, scroll reveals that hide content, and motion on the theme switch or copy feedback.
+
+- `ProjectMotionProvider` and `ProjectLink` coordinate Next.js soft navigation with native same-document view transitions. Only the selected screenshot frame receives a transition name. Server-rendered images and prose remain server-rendered. Tool artwork and text-only professional work keep normal navigation. Navigation has a bounded wait for route/image readiness; animation failure never prevents routing.
+- `ProjectArchive` temporarily names cards during native transitions, so retained cards move and removed/added cards fade. Rapid selection skips an earlier animation. Keyboard selection is immediate.
+- `SiteHeader` measures the active link and moves one underline. Initial rendering, resizing, and keyboard navigation position it immediately. The existing underline remains a pre-hydration fallback.
+- `HeroSlash` reveals the slash once per tab session, without hiding text or waiting for an animation to finish. Desktop screenshot hover zoom is 1.02×, limited to fine pointers.
+- Reduced-motion preferences bypass native transitions and the hero reveal; CSS also disables new transition pseudo-element animations. Browsers without native view transitions retain immediate functional navigation and filtering. No framework upgrades or animation dependencies are required.
