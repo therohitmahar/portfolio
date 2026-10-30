@@ -1999,13 +1999,14 @@ ol {
 }
 .hero-slash-fill { fill: currentColor; clip-path: inset(-.15em); }
 @media (prefers-reduced-motion: no-preference) {
-  .hero-slash-control[data-stroke-ready="true"] .hero-slash-glyph { opacity: 0; }
+  /* Reserve the glyph's space but start blank, including before hydration. */
+  .hero-slash-control .hero-slash-glyph { opacity: 0; }
   .hero-slash-control[data-stroke-ready="true"] .hero-slash-svg { display: block; }
   .hero-slash-control[data-stroke-ready="true"] .hero-slash-outline {
-    animation: hero-slash-draw 6.8s cubic-bezier(.45, 0, .55, 1) -2.5s infinite;
+    animation: hero-slash-draw 6.8s cubic-bezier(.45, 0, .55, 1) .2s infinite both;
   }
   .hero-slash-control[data-stroke-ready="true"] .hero-slash-fill {
-    animation: hero-slash-ink 6.8s cubic-bezier(.45, 0, .55, 1) -2.5s infinite;
+    animation: hero-slash-ink 6.8s cubic-bezier(.45, 0, .55, 1) .2s infinite both;
   }
   .hero-slash-control:is([data-paused="true"], [data-in-view="false"], [data-document-visible="false"]) .hero-slash-outline,
   .hero-slash-control:is([data-paused="true"], [data-in-view="false"], [data-document-visible="false"]) .hero-slash-fill { animation-play-state: paused; }
