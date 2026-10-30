@@ -139,3 +139,19 @@ Production build with TypeScript, targeted ESLint, script syntax, and diff white
 The copy confirmation previously participated in the same wrapping flex group as its button; adding text enlarged that group and could move the button relative to Write an email. Contact now uses a dedicated action grid, with copy feedback in its own full-width row and space reserved for two lines. At 400px and below the buttons intentionally stack from the initial render; above that they sit side by side. Feedback does not determine the layout.
 
 Production build including TypeScript, targeted ESLint, and whitespace checks passed. Contact-only browser tests at 320, 390, 414, 768, and 1440px in both themes checked initial, copy-success, and forced-copy-failure states. All ten combinations preserved each button's x/y position and width/height, as well as the supporting note's y position, within 0.5px. Feedback remained below the buttons with no overlap or horizontal overflow. Representative success/error screenshots were visually inspected. Measurements and captures are retained locally in ignored `output/review/copy-feedback-layout/`. The clipboard fallback logic itself is unchanged from the previous verified fix.
+
+## Logo option 3 implementation and independent compatibility review
+
+The user selected logo colour option 3. Header geometry is unchanged from `/Users/rohitmahar/Downloads/rm-logo.svg` (the sage/ivory source has identical paths). BrandLogo uses the current slash and text tokens in each theme, without altering the website palette. Favicon SVG uses the same paths and approved dark pair on #1b1e19. Added a multi-size ICO and an opaque Apple PNG derived by browser rasterisation of that SVG. Original supplied files are untouched.
+
+| Before | After | Why |
+| --- | --- | --- |
+| Font-based rm header and favicon | Supplied vector monogram geometry | Identity is consistent and independent of font rendering |
+| Fixed asset colours | Existing mode-aware slash/ink fills in header | Matches option 3 and preserves site colours |
+| SVG icon only | SVG + 16/32/48/64px ICO + 180px Apple PNG | Browser and home-screen format fallbacks |
+
+The read-only logo_compatibility sub-agent verified exact path preservation, accessible home-link naming, hidden/nonfocusable inner SVG, theme contrast, valid ICO directories and decoded payload sizes, and the 180px opaque-corner Apple PNG. No blocking compatibility issue was found. Its concrete limitation is that at 16px the mark occupies approximately 14×8px, so the curved separation is a tiny antialiased notch; individual initials should not be promised as fully legible.
+
+Primary verification: production build with TypeScript, targeted lint and diff checks passed. Homepage-only browser checks covered 320, 390, and 1440px in both schemes, plus manual theme switching, reload persistence, and OS-theme changes. Header height remains 68px on phones / 112px on desktop, logo/navigation do not collide, and no horizontal overflow was found. Generated metadata advertises ICO, SVG sizes=any, and Apple PNG 180×180; all three asset URLs returned 200 with the expected MIME types. Rendered logo and 16px favicon samples were visually inspected. Browser reports/captures are in ignored output/review/logo/. Safari/Firefox and actual OS home-screen installation were not run; format checks and published file conventions support those fallbacks, not a claim of device certification.
+
+The user separately requested mobile type options before application. Current, equal-size, and swapped-size variants were rendered only in isolated temporary browser previews at 390px in both themes. An additional typography-only 320px check could not run because its fresh browser tab crashed; this does not invalidate the earlier successful 320px logo checks. No hero typography styles were changed in the project. Preview comparisons are /tmp/mobile-type-options-light.png and /tmp/mobile-type-options-dark.png.

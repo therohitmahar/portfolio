@@ -109,12 +109,17 @@ ol {
   border-bottom: var(--border-rule);
 }
 .identity {
-  font-size: 27px;
-  letter-spacing: -0.08em;
-  line-height: 1;
-  font-weight: 600;
-  padding: 8px 0;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  flex-shrink: 0;
   text-decoration: none;
+}
+.brand-logo {
+  display: block;
+  width: 44px;
+  height: auto;
+  pointer-events: none;
 }
 .site-header nav {
   display: flex;
@@ -1390,13 +1395,6 @@ ol {
     margin-inline: -22px;
     padding: calc(10px + env(safe-area-inset-top)) 22px 10px;
     background: var(--paper);
-  }
-  .identity {
-    display: inline-flex;
-    align-items: center;
-    min-height: 44px;
-    font-size: 25px;
-    flex-shrink: 0;
   }
   .site-header nav {
     gap: 16px;

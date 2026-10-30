@@ -4,12 +4,13 @@ import { usePathname } from "next/navigation";
 import ThemeToggle from "./ThemeToggle";
 import BrandSlash from "./BrandSlash";
 import ArrowIcon from "./ArrowIcon";
+import BrandLogo from "./BrandLogo";
 export default function SiteHeader() {
   const pathname = usePathname();
   return (
     <header className="site-header">
       <Link className="identity" href="/" aria-label="Rohit Mahar — home">
-        rm
+        <BrandLogo />
       </Link>
       <nav aria-label="Main navigation">
         {[
