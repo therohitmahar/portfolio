@@ -238,12 +238,17 @@ async function recordScreenshot(page, file) {
       .getByRole("status")
       .filter({ hasText: "Email address copied." })
       .waitFor();
-    await page.evaluate(() =>
+    await page.evaluate(() => {
       Object.defineProperty(navigator, "clipboard", {
         configurable: true,
         value: { writeText: () => Promise.reject(new Error("blocked")) },
-      }),
-    );
+      });
+      // Failure feedback requires both the modern and compatibility paths to fail.
+      Object.defineProperty(document, "execCommand", {
+        configurable: true,
+        value: () => false,
+      });
+    });
     await page.getByRole("button", { name: "Copy email address" }).click();
     await page
       .getByRole("status")
