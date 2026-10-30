@@ -137,7 +137,7 @@ ol {
   gap: 4px;
 }
 .site-header nav a:hover {
-  text-decoration: underline;
+  color: var(--link);
 }
 .site-header nav a[aria-current] {
   text-decoration: underline;
@@ -1862,8 +1862,6 @@ ol {
   transform-box: fill-box;
   transform-origin: center;
 }
-.hero-separator,
-.heading-slash { transform-origin: 50% 85%; }
 .pixelwind-code { position: relative; }
 .pixelwind-code pre {
   height: 12em;
@@ -1895,8 +1893,128 @@ ol {
 }
 .pixelwind-example .button-secondary[aria-disabled="true"] { cursor: progress; }
 .pixelwind-status { margin-top: var(--space-3); font-size: var(--type-caption); color: var(--muted); }
-@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  .brand-logo path { transition: transform 240ms var(--ease-press); }
-  .identity:hover .brand-logo path:first-child { transform: translateX(-3%) rotate(-2deg); }
-  .identity:hover .brand-logo path:last-child { transform: translateX(2%) rotate(1deg); }
+
+/* The supplied monogram opens into a wordmark without moving the navigation. */
+.brand-logo {
+  position: relative;
+  height: 27px;
+}
+.brand-monogram {
+  display: block;
+  width: 44px;
+  height: 27px;
+  overflow: visible;
+}
+.brand-wordmark {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  display: flex;
+  gap: 8px;
+  width: max-content;
+  transform: translateY(-50%);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: var(--tracking-display);
+  white-space: nowrap;
+}
+.brand-initial,
+.brand-tail { display: inline-block; opacity: 0; }
+.brand-first-word { color: var(--brand-slash); }
+.brand-last-word { color: var(--ink); }
+.brand-tail { transform: translateX(-6px); }
+.monogram-m { transform: translateX(0); }
+@media (min-width: 900px) and (hover: hover) and (pointer: fine) {
+  .identity:is(:hover, :focus-visible) .brand-logo[data-wordmark-ready] {
+    width: var(--wordmark-width);
+  }
+  .identity:is(:hover, :focus-visible) .brand-logo[data-wordmark-ready] .brand-monogram path { opacity: 0; }
+  .identity:is(:hover, :focus-visible) .brand-logo[data-wordmark-ready] .monogram-m { transform: translateX(var(--monogram-m-shift)); }
+  .identity:is(:hover, :focus-visible) .brand-logo[data-wordmark-ready] .brand-initial,
+  .identity:is(:hover, :focus-visible) .brand-logo[data-wordmark-ready] .brand-tail { opacity: 1; transform: none; }
+  .identity:focus-visible .brand-logo,
+  .identity:focus-visible .brand-logo * { transition: none; }
+}
+@media (min-width: 900px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .brand-logo { transition: width 280ms var(--ease-press); }
+  .brand-logo .brand-monogram path { transition: opacity 160ms ease 40ms, transform 280ms var(--ease-press); }
+  .brand-initial { transition: opacity 120ms ease; }
+  .brand-tail { transition: opacity 140ms ease, transform 240ms var(--ease-press); }
+  .identity:hover .brand-logo[data-wordmark-ready] .brand-monogram path { transition-delay: 20ms, 0ms; }
+  .identity:hover .brand-logo[data-wordmark-ready] .brand-initial { transition: opacity 160ms ease 100ms; }
+  .identity:hover .brand-logo[data-wordmark-ready] .brand-tail { transition-delay: 70ms, 40ms; }
+}
+.site-header .identity:hover { text-decoration: none; }
+
+/* The same generously sized mask is used during the wipe and at rest. */
+.heading-slash { clip-path: inset(-.15em); }
+
+/* Hero-only Stroke Text loop; page-heading slashes keep their one-time wipe. */
+.hero-slash-control {
+  position: relative;
+  display: block;
+  appearance: none;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--brand-slash);
+  font: inherit;
+  letter-spacing: inherit;
+  text-align: inherit;
+  cursor: pointer;
+  isolation: isolate;
+}
+.hero-slash-control::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: max(44px, 100%);
+  height: max(44px, 100%);
+  transform: translate(-50%, -50%);
+}
+.hero-slash-control:disabled { cursor: default; }
+.hero-slash-glyph { display: block; }
+.hero-slash-svg {
+  position: absolute;
+  inset: 0;
+  display: none;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+.hero-slash-svg text { font: inherit; letter-spacing: inherit; }
+.hero-slash-outline {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: var(--slash-stroke);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: var(--slash-dash);
+  stroke-dashoffset: 0;
+}
+.hero-slash-fill { fill: currentColor; clip-path: inset(-.15em); }
+@media (prefers-reduced-motion: no-preference) {
+  .hero-slash-control[data-stroke-ready="true"] .hero-slash-glyph { opacity: 0; }
+  .hero-slash-control[data-stroke-ready="true"] .hero-slash-svg { display: block; }
+  .hero-slash-control[data-stroke-ready="true"] .hero-slash-outline {
+    animation: hero-slash-draw 6.8s cubic-bezier(.45, 0, .55, 1) -2.5s infinite;
+  }
+  .hero-slash-control[data-stroke-ready="true"] .hero-slash-fill {
+    animation: hero-slash-ink 6.8s cubic-bezier(.45, 0, .55, 1) -2.5s infinite;
+  }
+  .hero-slash-control:is([data-paused="true"], [data-in-view="false"], [data-document-visible="false"]) .hero-slash-outline,
+  .hero-slash-control:is([data-paused="true"], [data-in-view="false"], [data-document-visible="false"]) .hero-slash-fill { animation-play-state: paused; }
+}
+@keyframes hero-slash-draw {
+  0%, 100% { stroke-dashoffset: var(--slash-dash); }
+  20%, 84% { stroke-dashoffset: 0; }
+}
+@keyframes hero-slash-ink {
+  0%, 20%, 84%, 100% { clip-path: inset(calc(100% + .15em) -.15em -.15em -.15em); }
+  36%, 68% { clip-path: inset(-.15em); }
 }

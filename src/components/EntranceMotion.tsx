@@ -4,6 +4,13 @@ import { useLayoutEffect } from "react";
 import { usePathname } from "next/navigation";
 
 const ease = "cubic-bezier(.23,1,.32,1)";
+// Keep an oversized resting clip on the same glyph. The wipe reaches that exact
+// clip before completion, avoiding a clipped edge being replaced by unmasked text.
+const slashFrames: Keyframe[] = [
+  { clipPath: "inset(calc(100% + .15em) -.15em -.15em -.15em)" },
+  { clipPath: "inset(-.15em)", offset: 0.9 },
+  { clipPath: "inset(-.15em)" },
+];
 
 // React Bits-inspired entrances, scoped to existing semantic server markup.
 // Content is visible before JS and never depends on an observer to become readable.
@@ -19,12 +26,13 @@ export default function EntranceMotion() {
       frames: Keyframe[],
       duration: number,
       delay = 0,
+      easing = ease,
     ) => {
       if (!element) return;
       const animation = element.animate(frames, {
         duration,
         delay,
-        easing: ease,
+        easing,
         fill: "backwards",
       });
       animations.push(animation);
@@ -62,25 +70,9 @@ export default function EntranceMotion() {
         420,
         50,
       );
-      const heroEnd = animate(
-        document.querySelector(".hero-separator"),
-        [
-          {
-            transform: "translateY(4px) rotate(-8deg)",
-            opacity: 0.4,
-            clipPath: "inset(85% 0 0 0)",
-          },
-          {
-            transform: "translateY(0) rotate(0deg)",
-            opacity: 1,
-            clipPath: "inset(0)",
-          },
-        ],
-        440,
-        60,
-      );
-      // Mark completion rather than mount, so Strict Mode's setup/cleanup can replay safely.
-      void heroEnd?.finished
+      const introEnd = animations.at(-1);
+      // The text introduction remains once per session; the slash has its own loop.
+      void introEnd?.finished
         .then(() => {
           try {
             sessionStorage.setItem("portfolio-hero-entered", "true");
@@ -92,20 +84,10 @@ export default function EntranceMotion() {
     }
     animate(
       document.querySelector(".page-intro .heading-slash"),
-      [
-        {
-          transform: "translateY(3px) rotate(-7deg)",
-          opacity: 0.45,
-          clipPath: "inset(65% 0 0 0)",
-        },
-        {
-          transform: "translateY(0) rotate(0deg)",
-          opacity: 1,
-          clipPath: "inset(0)",
-        },
-      ],
-      380,
+      slashFrames,
+      560,
       40,
+      "cubic-bezier(.45, 0, .55, 1)",
     );
 
     const observer = new IntersectionObserver(
@@ -155,14 +137,20 @@ export default function EntranceMotion() {
         { duration: 380, delay: index * 45, easing: ease, fill: "backwards" },
       ),
     );
+    const stopIntro = () =>
+      animations.forEach((animation) => animation.cancel());
     const stop = () => {
-      if (preference.matches)
-        animations.forEach((animation) => animation.cancel());
+      if (preference.matches) stopIntro();
     };
+    const identity = document.querySelector(".identity");
+    identity?.addEventListener("pointerenter", stopIntro);
+    identity?.addEventListener("focusin", stopIntro);
     preference.addEventListener("change", stop);
     return () => {
+      identity?.removeEventListener("pointerenter", stopIntro);
+      identity?.removeEventListener("focusin", stopIntro);
       preference.removeEventListener("change", stop);
-      animations.forEach((animation) => animation.cancel());
+      stopIntro();
     };
   }, []);
   return null;
