@@ -127,7 +127,9 @@ export default function EntranceMotion() {
   useLayoutEffect(() => {
     const preference = matchMedia("(prefers-reduced-motion: reduce)");
     if (preference.matches) return;
-    const paths = document.querySelectorAll(".brand-logo path");
+    const paths = document.querySelectorAll(
+      ".brand-logo .monogram-r, .brand-logo .monogram-m",
+    );
     const animations = Array.from(paths, (path, index) =>
       path.animate(
         [

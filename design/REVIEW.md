@@ -213,3 +213,15 @@ Earlier focused headed-Chrome checks verified the single-underline behaviour, an
 **Final verification status:** the subsequent continuous HeroSlash component, final 44px whole-word colours, and gentler easing were reviewed in source only. No build, lint, browser test, or screenshot was run after the user's stop-testing instruction. Earlier browser reports in ignored `output/review/header-refinement/` are historical evidence, not verification of this final version. The preview was switched from the prior production build to the development server on port 3014 so the user's review receives current source. No commit is being represented as tested beyond that evidence.
 
 Hero loop starting-state follow-up: removed the negative phase offset that initially displayed the completed slash. In normal-motion mode the native layout glyph is now hidden before hydration as well; the SVG starts at its empty first frame, holds it through a 200ms positive delay, then draws in. Both animations use backwards/forwards fill so no completed outline can flash during that delay. Reduced-motion mode retains the static native glyph. No local tests were run, following the user's standing instruction.
+
+## Custom SVG letters for the expanding name
+
+The user requested custom vector letters rather than an approximate font match. The implementation now preserves the supplied r/m paths as the actual, continuously visible initials. It adds only the required geometric letterforms (o/h/i/t/a), reusing h/a/r where repeated, with matched stem thickness, counters, baseline and SVG scale. The m translates into its full-name position while suffixes appear; it no longer fades into a differently shaped text m. Complete first/last groups retain their light/dark colour tokens. Compact header and favicon geometry are preserved.
+
+| Before | After | Why |
+| --- | --- | --- |
+| SVG initials crossfade into Arial letters | Same r/m paths remain visible throughout | Remove the font-shape handoff |
+| Full name width measured from HTML text | Fixed vector layout in shared glyph data | Keep glyph scale and spacing independent of installed fonts |
+| Startup animation selects every logo path | Startup animation selects only r/m | Keep added letters hidden until expansion |
+
+The single source of glyph geometry is `src/data/brand-glyphs.json`; `public/images/rm-wordmark.svg` is the complete standalone export. This refinement uses vector/code-native assets, not generated bitmap imagery. No local build, lint, browser check or visual rendering was run, as requested by the user; only source review and formatting were performed. The existing development server will pick up the changes for the user's review.
