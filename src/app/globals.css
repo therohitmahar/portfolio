@@ -1856,3 +1856,47 @@ ol {
   ::view-transition-old(*),
   ::view-transition-new(*) { animation: none !important; }
 }
+
+/* Brand motion never changes the logo geometry, typography, or hit area. */
+.brand-logo path {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.hero-separator,
+.heading-slash { transform-origin: 50% 85%; }
+.pixelwind-code { position: relative; }
+.pixelwind-code pre {
+  height: 12em;
+  font-size: var(--type-small);
+  line-height: 1.7;
+  background: var(--paper);
+  overflow: auto;
+  margin-block: var(--space-5);
+  padding: var(--space-4);
+  border: var(--border-rule);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.pixelwind-pixels {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  pointer-events: none;
+}
+.pixelwind-pixels span { opacity: 0; background: var(--brand-slash); }
+.pixelwind-example .button-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  min-width: 190px;
+}
+.pixelwind-example .button-secondary[aria-disabled="true"] { cursor: progress; }
+.pixelwind-status { margin-top: var(--space-3); font-size: var(--type-caption); color: var(--muted); }
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .brand-logo path { transition: transform 240ms var(--ease-press); }
+  .identity:hover .brand-logo path:first-child { transform: translateX(-3%) rotate(-2deg); }
+  .identity:hover .brand-logo path:last-child { transform: translateX(2%) rotate(1deg); }
+}

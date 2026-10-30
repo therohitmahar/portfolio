@@ -3,6 +3,9 @@ import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
 import ArrowIcon from "@/components/ArrowIcon";
 import { ProjectMotionProvider } from "@/components/ProjectMotion";
+import SmoothScroll from "@/components/SmoothScroll";
+import EntranceMotion from "@/components/EntranceMotion";
+import "lenis/dist/lenis.css";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -78,6 +81,8 @@ export default function RootLayout({
               <p>Mumbai, India</p>
             </footer>
           </div>
+          <SmoothScroll />
+          <EntranceMotion />
         </ProjectMotionProvider>
       </body>
     </html>

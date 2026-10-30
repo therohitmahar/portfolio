@@ -32,7 +32,7 @@ export default function WorkPage() {
           <TextLink href="/rohit-mahar-resume.pdf">View resume</TextLink>
         </aside>
         <div className="contributions">
-          <section className="work-section">
+          <section className="work-section" data-reveal>
             <span className="eyebrow">Performance</span>
             <h2>Candidate Database</h2>
             <p className="contribution-lead">
@@ -48,7 +48,7 @@ export default function WorkPage() {
               represent a 50% reduction in load time.
             </p>
           </section>
-          <section className="work-section">
+          <section className="work-section" data-reveal>
             <span className="eyebrow">Product development</span>
             <h2>Assessment workflows</h2>
             <p>
@@ -62,7 +62,7 @@ export default function WorkPage() {
               alongside the backend and product teams.
             </p>
           </section>
-          <section className="work-section">
+          <section className="work-section" data-reveal>
             <span className="eyebrow">UI/UX in an existing product</span>
             <h2>Candidate-field settings</h2>
             <p>
@@ -74,7 +74,7 @@ export default function WorkPage() {
               Read the redesign notes
             </TextLink>
           </section>
-          <section className="work-section">
+          <section className="work-section" data-reveal>
             <span className="eyebrow">Shared frontend work</span>
             <h2>Components, hooks & analytics</h2>
             <p>
@@ -84,7 +84,7 @@ export default function WorkPage() {
               screens.
             </p>
           </section>
-          <section className="work-section">
+          <section className="work-section" data-reveal>
             <span className="eyebrow">Working with users</span>
             <h2>From a reported issue to a fix</h2>
             <p>

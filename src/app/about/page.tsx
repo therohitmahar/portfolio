@@ -41,7 +41,7 @@ export default function AboutPage() {
       <div className="about-editorial">
         <div className="about-story">
           <h2>How I work</h2>
-          <section>
+          <section data-reveal>
             <h3>Frontend engineering</h3>
             <p>
               I like the parts of frontend work where behavior matters: a long
@@ -55,7 +55,7 @@ export default function AboutPage() {
             </p>
             <TextLink href="/projects">Explore my projects</TextLink>
           </section>
-          <section>
+          <section data-reveal>
             <h3>UI/UX and product redesigns</h3>
             <p>
               Over the past few months, I’ve been spending more time on UI/UX.
@@ -76,7 +76,7 @@ export default function AboutPage() {
               </TextLink>
             </div>
           </section>
-          <section>
+          <section data-reveal>
             <h3>User collaboration</h3>
             <p>
               Direct conversations with users help me understand what is
@@ -88,7 +88,7 @@ export default function AboutPage() {
         </div>
         <aside className="about-facts" aria-labelledby="background-heading">
           <h2 id="background-heading">Skills & education</h2>
-          <section>
+          <section data-reveal>
             <h3>Technologies</h3>
             <dl className="capability-list">
               <div>
@@ -105,7 +105,7 @@ export default function AboutPage() {
               </div>
             </dl>
           </section>
-          <section>
+          <section data-reveal>
             <h3>Education</h3>
             <p>Bachelor of Computer Applications</p>
             <span>

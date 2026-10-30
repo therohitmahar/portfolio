@@ -5,6 +5,7 @@ import { stories } from "@/data/stories";
 import type { Work } from "@/data/work";
 import BrandSlash from "./BrandSlash";
 import ArrowIcon from "./ArrowIcon";
+import PixelwindExample from "./PixelwindExample";
 
 export function PageIntro({
   label,
@@ -156,6 +157,7 @@ export function ToolArtwork({
   slug: string;
   compact?: boolean;
 }) {
+  if (slug === "pixelwind" && !compact) return <PixelwindExample />;
   const example = snippets[slug];
   if (!example) return null;
   return (
