@@ -109,3 +109,19 @@ Validation of this local pass: production build including TypeScript passed; tar
 At the user's request, ArrowIcon now wraps Lucide ArrowRight/ArrowUpRight, ThemeToggle uses Lucide Moon/Sun, and demo connector arrows use the shared wrapper. The slash stays typographic. Added lucide-react 1.33.0 to package.json and the npm lockfile. Normal offline installation hit an unrelated missing Tailwind archive; the cached Lucide tarball was obtained directly, its SHA-512 verified against npm metadata, and the exact package extracted into ignored node_modules. The dependency/lock entry uses that published version, tarball and integrity. No unrelated lock entries were changed.
 
 Build with TypeScript, targeted lint, and whitespace checks passed. Home returned 200 and its rendered HTML contains Lucide arrow, moon, and sun classes. No all-page traversal or fresh browser visual check was run.
+
+## CTA clarity and About grouping — traceable revision
+
+The pre-fix portfolio is commit `2898eaeb61083a3621a8eca2f1d064c9ede5f3fe`, annotated tag `portfolio-before-cta-about-2026-10-30`. This checkpoints the earlier local polish, Lucide migration, and compact theme toggle before the CTA/About changes. The original portfolio landmark tag is unchanged. Pre-fix screenshots and measurements are retained in ignored `output/review/cta-about-before/`; revised captures and reports are in `output/review/cta-about-after/`.
+
+| Before | After | Why |
+| --- | --- | --- |
+| Project actions used 12px text, approximately 20px-high targets, and hover-only underlines | Project actions use 14px text, persistent underlines, 44px minimum target height, and Lucide direction cues; Other builds sources also have 44px targets | Secondary actions can be recognised before hovering or tapping |
+| Homepage linked sections relied on headings and distant arrows | Each linked section includes an explicit underlined action label: View LineupX work / Explore projects | The destination and available action are stated |
+| Mobile career/background block began at y≈1493px after all narrative sections | Separate experience timeline begins at y≈418px at 390px viewport width (y≈446px at 320px), before the narrative | Current professional experience is visible much earlier |
+| Career history appeared under Currently; narrative and supporting facts had overlapping labels | Experience, How I work, and Skills & education establish the main groups; engineering, UI/UX, and user collaboration are subtopics | Readers can scan related facts together |
+| UI/UX link group and its children both added 24px top margins | A single 16px group margin; wrapped link rows have a 4px gap | Evidence links remain attached to the paragraph they support |
+
+Validation: production build including TypeScript, targeted ESLint, and whitespace checks passed. Browser checks used isolated Chromium contexts through the working local CDP connection, without touching existing tabs. Only Home, Projects, and About were visited. Those routes were checked at 320, 390, and 1440px in both themes (18 views). The final 390/1440 report records 12 views, zero overflow, and zero runtime errors. Project/Other builds action heights, type size and persistent underlines were asserted, as were the explicit homepage action labels and earlier About experience order. The 320px pass additionally verified the exact 16px UI/UX paragraph-to-link gap and keyboard-visible focus clearing the sticky header. Home-to-Projects navigation and filtering worked in both desktop and mobile contexts. Screenshots of the revised layouts, project actions, and narrow About page were visually inspected and compared with the baseline.
+
+This is an implementation and browser review, not a user study or Safari/Firefox certification. Project facts, role dates, skills, education, portfolio branding, and the compact theme-control treatment were preserved. No push or deployment was performed.

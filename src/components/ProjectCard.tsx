@@ -31,16 +31,17 @@ export default function ProjectCard({
         </div>
         <div className="project-links">
           <Link href={projectHref(p)}>
-            Read project notes <ArrowIcon />
+            Read project notes <ArrowIcon direction="right" />
           </Link>
           {p.live && (
             <a href={p.live} target="_blank" rel="noreferrer">
               {p.kind === "Tool" ? "Open tool" : "Visit project"}
+              <ArrowIcon />
             </a>
           )}
           {p.source && (
             <a href={p.source} target="_blank" rel="noreferrer">
-              Source
+              Source <ArrowIcon />
             </a>
           )}
         </div>

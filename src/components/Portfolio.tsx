@@ -33,18 +33,17 @@ export default function Portfolio() {
       </section>
       <section className="home-directory" aria-label="Explore the portfolio">
         <Link href="/work">
-          <h2>
-            At LineupX <ArrowIcon />
-          </h2>
+          <h2>At LineupX</h2>
           <p>
             Production interfaces, performance improvements, and legacy UI
             redesigns.
           </p>
+          <span className="directory-action">
+            View LineupX work <ArrowIcon direction="right" />
+          </span>
         </Link>
         <Link href="/projects">
-          <h2>
-            Apps & tools <ArrowIcon />
-          </h2>
+          <h2>Apps & tools</h2>
           <figure className="home-project-preview">
             <div>
               <Image
@@ -61,6 +60,9 @@ export default function Portfolio() {
             PR Tracker, Context Flow AI, Next Shelf, and smaller developer
             utilities.
           </p>
+          <span className="directory-action">
+            Explore projects <ArrowIcon direction="right" />
+          </span>
         </Link>
       </section>
     </>

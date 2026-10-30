@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { PageIntro, TextLink } from "@/components/UI";
+import ArrowIcon from "@/components/ArrowIcon";
 export const metadata: Metadata = {
   title: "About",
   description:
@@ -15,10 +17,32 @@ export default function AboutPage() {
           personal apps and developer tools.
         </p>
       </PageIntro>
+      <section className="about-profile" aria-labelledby="experience-heading">
+        <h2 id="experience-heading">Experience at LineupX</h2>
+        <ol className="about-timeline" role="list">
+          <li>
+            <h3>Frontend Developer</h3>
+            <p>
+              <time dateTime="2024-04">Apr 2024</time> — Present
+            </p>
+          </li>
+          <li>
+            <h3>Frontend Intern</h3>
+            <p>
+              <time dateTime="2023-11">Nov 2023</time> —{" "}
+              <time dateTime="2024-04">Apr 2024</time>
+            </p>
+          </li>
+        </ol>
+        <div className="about-profile-actions">
+          <TextLink href="/work">View professional work</TextLink>
+        </div>
+      </section>
       <div className="about-editorial">
         <div className="about-story">
+          <h2>How I work</h2>
           <section>
-            <h2>The work I’m drawn to</h2>
+            <h3>Frontend engineering</h3>
             <p>
               I like the parts of frontend work where behavior matters: a long
               import that needs to resume, a graph editor that should recover a
@@ -32,7 +56,7 @@ export default function AboutPage() {
             <TextLink href="/projects">Explore my projects</TextLink>
           </section>
           <section>
-            <h2>More attention to UI/UX</h2>
+            <h3>UI/UX and product redesigns</h3>
             <p>
               Over the past few months, I’ve been spending more time on UI/UX.
               That has included redesigning legacy candidate-field settings at
@@ -45,15 +69,15 @@ export default function AboutPage() {
             </p>
             <div className="inline-links">
               <TextLink href="/work/lineupx-settings">
-                LineupX redesign
+                View LineupX redesign
               </TextLink>
               <TextLink href="/projects/clearmind">
-                ClearMind exploration
+                View ClearMind exploration
               </TextLink>
             </div>
           </section>
           <section>
-            <h2>Working with people</h2>
+            <h3>User collaboration</h3>
             <p>
               Direct conversations with users help me understand what is
               happening before deciding what to change. I clarify requests,
@@ -62,17 +86,10 @@ export default function AboutPage() {
             </p>
           </section>
         </div>
-        <aside className="about-facts">
+        <aside className="about-facts" aria-labelledby="background-heading">
+          <h2 id="background-heading">Skills & education</h2>
           <section>
-            <h2>Currently</h2>
-            <p>Frontend Developer at LineupX</p>
-            <span>Apr 2024 — Present</span>
-            <p>Previously a Frontend Intern</p>
-            <span>Nov 2023 — Apr 2024</span>
-            <TextLink href="/work">Professional work</TextLink>
-          </section>
-          <section>
-            <h2>Working with</h2>
+            <h3>Technologies</h3>
             <dl className="capability-list">
               <div>
                 <dt>Interfaces</dt>
@@ -89,7 +106,7 @@ export default function AboutPage() {
             </dl>
           </section>
           <section>
-            <h2>Education</h2>
+            <h3>Education</h3>
             <p>Bachelor of Computer Applications</p>
             <span>
               Chandrabhan Sharma College
@@ -102,14 +119,15 @@ export default function AboutPage() {
       </div>
       <section className="page-next">
         <div>
-          <span className="eyebrow">Get in touch</span>
           <h2>Talk about the work</h2>
           <p>
             For frontend opportunities, project enquiries, or questions about a
             build.
           </p>
         </div>
-        <TextLink href="/contact">Contact details</TextLink>
+        <Link className="primary-link" href="/contact">
+          Get in touch <ArrowIcon direction="right" />
+        </Link>
       </section>
     </div>
   );
