@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import { stories } from "@/data/stories";
 import type { Work } from "@/data/work";
 import BrandSlash from "./BrandSlash";
+import ArrowIcon from "./ArrowIcon";
 
 export function PageIntro({
   label,
@@ -18,12 +19,12 @@ export function PageIntro({
 }) {
   return (
     <header className="page-intro">
-      <span className="eyebrow">{label}</span>
       <h1>
         {slash && <BrandSlash className="heading-slash" />}
         {title}
       </h1>
       <div className="page-description">{children}</div>
+      <p className="page-context">{label}</p>
     </header>
   );
 }
@@ -46,12 +47,12 @@ export function TextLink({
       rel="noreferrer"
     >
       {children}
-      <span aria-hidden="true"> ↗</span>
+      <ArrowIcon />
     </a>
   ) : (
     <Link className={`text-link ${className}`} href={href}>
       {children}
-      <span aria-hidden="true"> →</span>
+      <ArrowIcon direction="right" />
     </Link>
   );
 }

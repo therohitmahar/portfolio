@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import BrandSlash from "./BrandSlash";
+import ArrowIcon from "./ArrowIcon";
 export default function Portfolio() {
   return (
     <>
@@ -22,7 +23,7 @@ export default function Portfolio() {
             personal apps and developer tools.
           </p>
           <Link className="primary-link" href="/work">
-            View professional work <span aria-hidden="true">↗</span>
+            View professional work <ArrowIcon />
           </Link>
         </div>
         <div className="hero-foot">
@@ -32,9 +33,8 @@ export default function Portfolio() {
       </section>
       <section className="home-directory" aria-label="Explore the portfolio">
         <Link href="/work">
-          <span>Professional work</span>
           <h2>
-            At LineupX <span aria-hidden="true">↗</span>
+            At LineupX <ArrowIcon />
           </h2>
           <p>
             Production interfaces, performance improvements, and legacy UI
@@ -42,7 +42,9 @@ export default function Portfolio() {
           </p>
         </Link>
         <Link href="/projects">
-          <span>Personal projects</span>
+          <h2>
+            Apps & tools <ArrowIcon />
+          </h2>
           <figure className="home-project-preview">
             <div>
               <Image
@@ -55,9 +57,6 @@ export default function Portfolio() {
             </div>
             <figcaption>Context Flow AI · a visual context editor</figcaption>
           </figure>
-          <h2>
-            Apps & tools <span aria-hidden="true">↗</span>
-          </h2>
           <p>
             PR Tracker, Context Flow AI, Next Shelf, and smaller developer
             utilities.

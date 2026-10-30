@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PageIntro, TextLink } from "@/components/UI";
 import CopyEmail from "@/components/CopyEmail";
+import ArrowIcon from "@/components/ArrowIcon";
 export const metadata: Metadata = {
   title: "Contact",
   description:
@@ -22,7 +23,7 @@ export default function ContactPage() {
         </a>
         <div className="inline-links">
           <a className="primary-link" href="mailto:therohitmahar@gmail.com">
-            Write an email <span aria-hidden="true">↗</span>
+            Write an email <ArrowIcon />
           </a>
           <CopyEmail />
         </div>

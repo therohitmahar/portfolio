@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { Moon, Sun } from "lucide-react";
 
 const storageKey = "portfolio-color-scheme";
 
@@ -46,18 +47,13 @@ export default function ThemeToggle() {
   return (
     <button className="theme-toggle" onClick={toggle} type="button">
       <span className="show-in-light">
-        <svg aria-hidden="true" viewBox="0 0 24 24">
-          <path d="M20.5 14.1A8.5 8.5 0 0 1 9.9 3.5a8.5 8.5 0 1 0 10.6 10.6Z" />
-        </svg>
+        <Moon aria-hidden="true" focusable="false" strokeWidth={1.5} />
         <span>
           Dark<span className="visually-hidden"> theme</span>
         </span>
       </span>
       <span className="show-in-dark">
-        <svg aria-hidden="true" viewBox="0 0 24 24">
-          <circle cx="12" cy="12" r="4" />
-          <path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.4 1.4m11.2 11.2L19 19M5 19l1.4-1.4M17.6 6.4 19 5" />
-        </svg>
+        <Sun aria-hidden="true" focusable="false" strokeWidth={1.5} />
         <span>
           Light<span className="visually-hidden"> theme</span>
         </span>

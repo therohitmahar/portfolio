@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import ArrowIcon from "./ArrowIcon";
 export function ProjectVisual({ slug }: { slug: string }) {
   const [paused, setPaused] = useState(true);
   const [selected, setSelected] = useState("Context");
@@ -13,9 +14,9 @@ export function ProjectVisual({ slug }: { slug: string }) {
         </div>
         <div className="sync-path">
           <span>GitHub</span>
-          <span aria-hidden="true">→</span>
+          <ArrowIcon direction="right" />
           <span>Checkpoint</span>
-          <span aria-hidden="true">→</span>
+          <ArrowIcon direction="right" />
           <span>IndexedDB</span>
         </div>
         <div className="sync-progress">
@@ -55,12 +56,12 @@ export function ProjectVisual({ slug }: { slug: string }) {
                 onClick={() => setSelected(n)}
               >
                 {n}
-                <span aria-hidden="true">↗</span>
+                <ArrowIcon />
               </button>
             ))}
           </div>
           <div className="flow-connector" aria-hidden="true">
-            →
+            <ArrowIcon direction="right" />
           </div>
           <div className="composer">
             <span>Composer</span>

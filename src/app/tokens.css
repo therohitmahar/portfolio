@@ -83,5 +83,8 @@
   --width-site: 90rem;
   --width-reading: 43rem;
   --radius-control: 0.2rem;
+  --duration-press: 140ms;
+  --ease-press: cubic-bezier(0.23, 1, 0.32, 1);
+  --tracking-display: -0.04em;
   --border-rule: 1px solid var(--line);
 }

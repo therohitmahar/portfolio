@@ -83,3 +83,29 @@ The first mobile pass placed the slash against the far-right edge using a flexib
 ### Lowercase heading treatment
 
 Applied the user-approved `/projects` treatment to all four primary page titles through PageIntro: lowercase text, no added gap after BrandSlash. Build/TypeScript and whitespace checks passed. Browser verification was limited to an attempted Projects-only check; the current CDP endpoint rejected Playwright context management, so this revision has not been visually reverified. The earlier route-matrix run was stopped at the user's request and is not claimed as verification of this revision.
+
+## October 30 — named design-skills refinement
+
+Source guidance read directly from upstream because the requested skills were absent locally and the skill-installer download failed at DNS resolution:
+- Emil Kowalski: https://github.com/emilkowalski/skills/blob/main/skills/emil-design-eng/SKILL.md
+- Impeccable: https://github.com/pbakaus/impeccable/blob/main/.agents/skills/impeccable/SKILL.md plus polish and craft-floor references.
+- Taste: https://github.com/Leonxlnx/taste-skill/blob/main/skills/taste-skill/SKILL.md plus critique guidance.
+
+Impeccable's launcher could not run; the documented fallback was announced and existing DESIGN_SYSTEM.md, tokens, shared components, and saved captures were used as context. No PRODUCT.md or root DESIGN.md exists. The user requested local changes and previously limited browsing, so this pass targets shared components and representative Home/Projects surfaces rather than opening every route.
+
+| Before | After | Why |
+| --- | --- | --- |
+| Small labels above page and project headings | Titles lead; context follows descriptions and project categories join the stack | Clearer hierarchy without removing project facts |
+| Font-dependent Unicode arrow icons | Shared decorative ArrowIcon SVG | Consistent weight, baseline and shape |
+| No shared press feedback; hover styling could persist on touch | 140ms pointer feedback, fine-pointer hover, immediate keyboard focus and reduced-motion fallback | More deliberate control behavior |
+| Tight -0.055em display tracking and muted main descriptions | Shared -0.04em display tracking and ink for primary descriptions | More readable type within the approved family |
+
+The requested skills are guidance for this refinement, not installed packages or successfully executed inspector tools. Their generators/inspectors were unavailable; the brief's pinned identity takes precedence over their broader new-site defaults. No invented imagery, metrics, testimonials or new dependencies were added. Browser tools were discovered, but local Chrome launch failed with the macOS Crashpad/bootstrap error. No fresh before/after render or visual score is claimed. Earlier captures are reference evidence only; their navigation and heading styling precede the latest slash changes.
+
+Validation of this local pass: production build including TypeScript passed; targeted ESLint and diff whitespace checks passed. Home and Projects returned 200 from the rebuilt local preview, with shared SVG icons and slash markup. Projects renders its H1 before its description and context and retains filter pressed-state markup. These are rendered-HTML checks, not browser layout, motion, accessibility, or screenshot verification. No pages beyond Home and Projects were requested for these checks. Changes remain local and uncommitted.
+
+### Lucide icons
+
+At the user's request, ArrowIcon now wraps Lucide ArrowRight/ArrowUpRight, ThemeToggle uses Lucide Moon/Sun, and demo connector arrows use the shared wrapper. The slash stays typographic. Added lucide-react 1.33.0 to package.json and the npm lockfile. Normal offline installation hit an unrelated missing Tailwind archive; the cached Lucide tarball was obtained directly, its SHA-512 verified against npm metadata, and the exact package extracted into ignored node_modules. The dependency/lock entry uses that published version, tarball and integrity. No unrelated lock entries were changed.
+
+Build with TypeScript, targeted lint, and whitespace checks passed. Home returned 200 and its rendered HTML contains Lucide arrow, moon, and sun classes. No all-page traversal or fresh browser visual check was run.

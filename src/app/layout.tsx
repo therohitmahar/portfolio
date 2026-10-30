@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
+import ArrowIcon from "@/components/ArrowIcon";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -58,17 +59,17 @@ export default function RootLayout({
                 target="_blank"
                 rel="noreferrer"
               >
-                GitHub ↗
+                GitHub <ArrowIcon />
               </a>
               <a
                 href="https://www.linkedin.com/in/therohitmahar/"
                 target="_blank"
                 rel="noreferrer"
               >
-                LinkedIn ↗
+                LinkedIn <ArrowIcon />
               </a>
               <Link href="/contact">Contact details</Link>
-              <a href="/rohit-mahar-resume.pdf">Resume ↗</a>
+              <a href="/rohit-mahar-resume.pdf">Resume <ArrowIcon /></a>
             </div>
             <p>Mumbai, India</p>
           </footer>

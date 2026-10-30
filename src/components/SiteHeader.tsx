@@ -3,6 +3,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import ThemeToggle from "./ThemeToggle";
 import BrandSlash from "./BrandSlash";
+import ArrowIcon from "./ArrowIcon";
 export default function SiteHeader() {
   const pathname = usePathname();
   return (
@@ -32,7 +33,7 @@ export default function SiteHeader() {
           </Link>
         ))}
         <a className="nav-resume" href="/rohit-mahar-resume.pdf">
-          Resume <span aria-hidden="true">↗</span>
+          Resume <ArrowIcon />
         </a>
         <ThemeToggle />
       </nav>

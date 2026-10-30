@@ -3,6 +3,7 @@ import ProjectArchive from "@/components/ProjectArchive";
 import ProjectCard from "@/components/ProjectCard";
 import { PageIntro } from "@/components/UI";
 import { work, moreProjects } from "@/data/work";
+import ArrowIcon from "@/components/ArrowIcon";
 export const metadata: Metadata = {
   title: "Personal projects",
   description:
@@ -42,7 +43,7 @@ export default function ProjectsPage() {
                 rel="noreferrer"
                 aria-label={`${p.name} public source`}
               >
-                Source ↗
+                Source <ArrowIcon />
               </a>
             )}
           </div>

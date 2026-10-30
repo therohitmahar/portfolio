@@ -125,6 +125,11 @@ ol {
   text-decoration: none;
   position: relative;
 }
+.site-header .nav-resume {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
 .site-header nav a:hover {
   text-decoration: underline;
 }
@@ -164,6 +169,16 @@ ol {
 .text-link span {
   white-space: nowrap;
 }
+.arrow-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+  vertical-align: -0.12em;
+}
+.text-link .arrow-icon {
+  margin-inline-start: 0.35em;
+}
 .inline-links {
   display: flex;
   align-items: center;
@@ -197,6 +212,41 @@ ol {
 .button-secondary:hover {
   border-color: var(--ink);
 }
+.primary-link,
+.button-secondary,
+.filters button,
+.theme-toggle {
+  transition: transform var(--duration-press) var(--ease-press);
+  touch-action: manipulation;
+}
+.primary-link:active:not(:focus-visible) {
+  transform: scale(0.985);
+}
+.button-secondary:active:not(:focus-visible),
+.filters button:active:not(:focus-visible) {
+  transform: scale(0.97);
+}
+.primary-link:focus-visible,
+.button-secondary:focus-visible,
+.filters button:focus-visible,
+.theme-toggle:focus-visible {
+  transition: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  .button-secondary:hover,
+  .filters button:not([aria-pressed="true"]):hover {
+    background: var(--surface-flow);
+  }
+  .theme-toggle:hover {
+    color: var(--link);
+  }
+  .primary-link .arrow-icon {
+    transition: transform var(--duration-press) var(--ease-press);
+  }
+  .primary-link:hover .arrow-icon {
+    transform: translate(2px, -2px);
+  }
+}
 .hero {
   padding: 58px 0 0;
 }
@@ -213,7 +263,7 @@ ol {
   align-items: baseline;
   gap: 0.22em;
   font-size: clamp(2rem, 1rem + 3.1vw, 4.2rem);
-  letter-spacing: -0.055em;
+  letter-spacing: var(--tracking-display);
   line-height: 1.12;
   margin: 52px 0 40px;
 }
@@ -237,6 +287,7 @@ ol {
   font-size: 20px;
   max-width: 600px;
   line-height: 1.55;
+  color: var(--ink);
 }
 .hero-intro > .primary-link {
   justify-self: end;
@@ -258,10 +309,6 @@ ol {
 .home-directory > a {
   text-decoration: none;
   padding: 15px 0;
-}
-.home-directory > a > span {
-  font-size: var(--type-caption);
-  color: var(--muted);
 }
 .home-directory h2 {
   display: flex;
@@ -300,13 +347,17 @@ ol {
   margin-bottom: var(--space-8);
   max-width: 850px;
 }
-.page-intro > .eyebrow {
-  margin-bottom: var(--space-5);
-}
 .page-intro h1 {
   font-size: var(--type-page);
-  letter-spacing: -0.055em;
+  letter-spacing: var(--tracking-display);
   margin-bottom: var(--space-5);
+}
+.page-context {
+  margin-top: var(--space-5);
+  font-size: var(--type-caption);
+}
+.page-description p {
+  color: var(--ink);
 }
 .page-description {
   font-size: var(--type-lead);
@@ -401,12 +452,13 @@ ol {
   background: transparent;
   padding: 10px 14px;
   font-size: var(--type-caption);
-  min-height: 42px;
+  min-height: 44px;
   border-radius: var(--radius-control);
 }
 .filters button span {
   margin-left: 10px;
   opacity: 0.8;
+  font-variant-numeric: tabular-nums;
 }
 .filters button[aria-pressed="true"] {
   background: var(--ink);
@@ -438,7 +490,7 @@ ol {
 }
 .project-card h2 {
   font-size: clamp(1.5rem, 1.2rem + 0.6vw, 1.9rem);
-  margin: var(--space-2) 0 var(--space-4);
+  margin: 0 0 var(--space-4);
 }
 .project-card h2 a {
   text-decoration: none;
@@ -449,12 +501,18 @@ ol {
 .project-card p {
   font-size: var(--type-small);
 }
+.project-card-copy > p:not(.project-evidence) {
+  color: var(--ink);
+}
 .project-card .project-evidence {
   margin-top: var(--space-4);
   font-size: var(--type-caption);
 }
 .project-card .stack {
   margin: var(--space-5) 0 var(--space-4);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
 }
 .project-card .project-links {
   margin-top: auto;
@@ -1087,20 +1145,19 @@ ol {
   color: var(--ink);
   background: transparent;
   border: 0;
-  padding: 12px;
+  padding: 0;
+  display: grid;
+  place-items: center;
   width: 44px;
   height: 44px;
   min-height: 44px;
   flex-shrink: 0;
-  font-size: var(--type-caption);
+  font-size: inherit;
   line-height: 1;
   border-radius: var(--radius-control);
 }
-.theme-toggle:hover {
-  background: var(--surface-flow);
-}
 .theme-toggle:active {
-  background: var(--surface-flow);
+  color: var(--link);
 }
 .theme-toggle > span > span {
   position: absolute;
@@ -1122,8 +1179,8 @@ ol {
   display: none;
 }
 .theme-toggle svg {
-  width: 20px;
-  height: 20px;
+  width: 1em;
+  height: 1em;
   stroke: currentColor;
   fill: none;
   stroke-width: 1.5;
@@ -1286,7 +1343,7 @@ ol {
     width: 44px;
     min-width: 44px;
     height: 44px;
-    padding: 12px;
+    padding: 0;
   }
   .hero {
     padding-top: 28px;
@@ -1300,7 +1357,7 @@ ol {
     font-size: clamp(2rem, 8vw, 3rem);
     gap: 18px 16px;
     margin: 36px 0 28px;
-    letter-spacing: -0.055em;
+    letter-spacing: var(--tracking-display);
   }
   .hero-name {
     flex-shrink: 1;
@@ -1364,15 +1421,15 @@ ol {
     font-size: var(--type-caption);
     margin-top: 8px;
   }
+  .home-project-preview + p {
+    margin-top: var(--space-4);
+  }
   .section,
   .page-content {
     padding-top: var(--space-7);
   }
   .page-intro {
     margin-bottom: var(--space-7);
-  }
-  .page-intro > .eyebrow {
-    margin-bottom: var(--space-4);
   }
   .page-description {
     font-size: 1.0625rem;
@@ -1642,6 +1699,13 @@ ol {
   *::after {
     transition: none !important;
     animation: none !important;
+  }
+  .primary-link,
+  .button-secondary,
+  .filters button,
+  .theme-toggle,
+  .primary-link .arrow-icon {
+    transform: none !important;
   }
 }
 
