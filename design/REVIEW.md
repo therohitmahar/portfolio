@@ -225,3 +225,16 @@ The user requested custom vector letters rather than an approximate font match. 
 | Startup animation selects every logo path | Startup animation selects only r/m | Keep added letters hidden until expansion |
 
 The single source of glyph geometry is `src/data/brand-glyphs.json`; `public/images/rm-wordmark.svg` is the complete standalone export. This refinement uses vector/code-native assets, not generated bitmap imagery. No local build, lint, browser check or visual rendering was run, as requested by the user; only source review and formatting were performed. The existing development server will pick up the changes for the user's review.
+
+## Sequential letter tuck, complete m, and optical corrections
+
+Replaced the partial m outline with a full three-stem path. In compact state its left portion sits behind r; expanded, the complete unmodified shape slides into view. The two names now use recursive SVG groups: each trailing letter moves within its predecessor's coordinates and is clipped at that predecessor's edge. Reversed DOM paint order places the predecessor in front. Explicit reversed delays implement the user's closing sequences, and m waits for both chains to finish before returning. There are no opacity fades or m path morphs. The user also requested a smaller right gap after the opening r and a lighter o; the r/o kerning is reduced by 40 units, subsequent positions shift together to retain the remaining spacing, and only o's inner counter expands slightly.
+
+| Before | After | Why |
+| --- | --- | --- |
+| Suffixes fade in/out | Each letter slides behind its predecessor in order | Match the requested t/i/h/o and r/a/h/a tuck chains |
+| m contains only the exposed part of the interlocked mark | Complete m drawn behind r, then translated as a whole | Show all three stems when expanded |
+| Opening r/o gap looks loose | Tighter first pair; later gaps preserved | Correct optical spacing without redistributing the rest |
+| o reads heavier than straight-stem letters | Slightly expanded inner counter | Compensate optically while preserving the outer shape |
+
+Source and standalone SVG remain in sync. Production build/typecheck passed before the final optical adjustments; the preview is rebuilt again after those changes. No browser interaction or screenshot tests were run, per the user's preference to verify visually themselves.

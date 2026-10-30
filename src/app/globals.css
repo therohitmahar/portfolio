@@ -1894,7 +1894,7 @@ ol {
 .pixelwind-example .button-secondary[aria-disabled="true"] { cursor: progress; }
 .pixelwind-status { margin-top: var(--space-3); font-size: var(--type-caption); color: var(--muted); }
 
-/* One vector alphabet: the original r/m stay visible and keep their scale. */
+/* Each suffix folds into its preceding letter; the full m only translates. */
 .brand-logo { position: relative; height: 27px; }
 .brand-monogram {
   position: absolute;
@@ -1905,21 +1905,22 @@ ol {
   height: var(--logo-svg-height);
   overflow: visible;
 }
-.brand-letter { opacity: 0; }
-.monogram-m { transform: translateX(0); }
+.brand-letter-step { transform: translateX(var(--letter-closed-x)); }
+.brand-move-m { transform: translateX(0); }
 @media (min-width: 900px) and (hover: hover) and (pointer: fine) {
   .identity:is(:hover, :focus-visible) .brand-logo { width: var(--wordmark-width); }
-  .identity:is(:hover, :focus-visible) .monogram-m { transform: translateX(var(--monogram-m-shift)); }
-  .identity:is(:hover, :focus-visible) .brand-letter { opacity: 1; }
+  .identity:is(:hover, :focus-visible) .brand-move-m { transform: translateX(var(--monogram-m-shift)); }
+  .identity:is(:hover, :focus-visible) .brand-letter-step { transform: translateX(var(--letter-open-x)); }
   .identity:focus-visible .brand-logo,
   .identity:focus-visible .brand-logo * { transition: none; }
 }
 @media (min-width: 900px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  .brand-logo { transition: width 360ms var(--ease-press); }
-  .monogram-m { transition: transform 280ms var(--ease-press) 80ms; }
-  .brand-letter { transition: opacity 100ms ease; }
-  .identity:hover .monogram-m { transition-delay: 0ms; }
-  .identity:hover .brand-letter { transition: opacity 130ms ease var(--letter-delay); }
+  .brand-logo { transition: width 660ms var(--ease-press); }
+  .brand-move-m { transition: transform 220ms cubic-bezier(.4, 0, .2, 1) 440ms; }
+  .brand-letter-step { transition: transform 110ms cubic-bezier(.4, 0, .2, 1) var(--letter-close-delay); }
+  .identity:hover .brand-logo { transition-duration: 600ms; }
+  .identity:hover .brand-move-m { transition-delay: 0ms; }
+  .identity:hover .brand-letter-step { transition-delay: var(--letter-open-delay); }
 }
 .site-header .identity:hover { text-decoration: none; }
 
