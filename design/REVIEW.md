@@ -259,3 +259,27 @@ Playground motion checks cover closing order (3,2,1,0 per word), fixed r geometr
 Production build/typecheck and targeted lint were run. Final homepage/header checks and their exact results are recorded in ignored `output/review/logo-isolation/`; no unrelated pages are part of this logo review. The playground is available separately on port 3015, with reusable source in `src/lib/wordmark-motion.ts`. No third-party animation dependency is added. Inspiration was checked against React Bits Split Text's stagger/easing controls and Emil Kowalski's moving-object/reversal guidance; the custom tuck/occlusion logic remains ours.
 
 Final verification after synchronization: the production build/typecheck and targeted lint passed. Homepage/header Playwright checks passed at 1440px/light and 900px/dark with a desktop pointer, plus 390px/dark and 320px/light with touch emulation. Each compact mark matched the supplied reference pixels in the same renderer, including after the completed tuck. Desktop expansion kept the r geometry and nav position fixed; keyboard expansion and reduced-motion switching were immediate. No horizontal overflow or page errors were found. The synchronized playground run confirmed m and the first closing letter both begin moving within the first sampled frames, with closing order 3/2/1/0 retained in both words. Fast reversal returned directly to the original mark without a delayed second phase. Final expanded header screenshots and intermediate synchronized frames were visually inspected. The earlier staged flow and four other presets remain available in the standalone playground. No unrelated routes were visited.
+
+### Mobile wordmark introduction — 2026-10-30
+
+| Before | After | Why |
+| --- | --- | --- |
+| Touch visitors saw only the compact logo | Each mobile refresh begins with the full vector name, holds five visible seconds, then tucks | Make the meaning of RM available without hover |
+| Desktop needed no touch substitute | Desktop retains its reversible hover/focus behaviour | Preserve the approved interaction |
+| Logo taps only navigated home | Mobile taps navigate home and expand the name; scrolling tucks it again | Replay the brand gesture through an existing action |
+| Links competed with an expanded name at narrow widths | Links reveal during the tuck; the theme target remains visible | Keep the mobile header readable without growing its height |
+
+The original paths and curved overlap remain unchanged. The 320px header uses
+40px SVG width throughout the gesture. Reduced motion skips the timed intro;
+keyboard input reveals navigation immediately; other taps reveal it early. Visible-tab
+time is used for the automatic hold. The standalone playground retains all prior
+presets and adds a five-second replay control.
+
+Validation: production build/typecheck and targeted ESLint passed. Headed
+Playwright checks passed at 320px/light and 390px/dark on touch, 900px/dark and
+1440px/light on desktop, and 390px with reduced motion. Checks covered refresh
+replay from a scrolled position, the five-second hold, tap replay remaining open
+past five seconds, scroll tuck, keyboard interruption, resizing, navigation home
+from /work, overflow, and page errors. Earlier pixel comparisons of the restored
+logo against the supplied SVG remain recorded above. Evidence is saved locally
+under output/review/logo-isolation/intro-report.json.

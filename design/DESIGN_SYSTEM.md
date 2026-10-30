@@ -170,3 +170,9 @@ The original exposed m path is restored unchanged. Its separately drawn missing 
 `bindWordmarkMotion` owns one reversible playhead. In the current synchronized mode, m moves over the whole 560ms gesture while the letters tuck on overlapping, ordered 320ms stages with an 80ms stagger. Both actions start together and end together; expansion reverses the same path. The gentle symmetric curve is `cubic-bezier(.45,0,.55,1)`. Native effects are created only while moving, then released at endpoints for crisp static SVG rendering. Interrupted hover gestures continue from their current pose rather than restarting or waiting on stale CSS delays. Keyboard and reduced-motion changes settle immediately. CSS retains an equivalent basic fallback.
 
 The original and all animation experiments are preserved in `design/logo-study.html`, `design/logo-playground.json` and `design/logo-reference.svg`. `npm run playground:logo` regenerates the standalone playground from the real component/controller. See `design/LOGO_PLAYGROUND.md` for reuse and a later Easter-egg integration; the main navigation remains unchanged.
+
+Mobile wordmark introduction: show the full SVG name on every page refresh,
+hold for five seconds of visible-tab time, and tuck while navigation is revealed.
+Logo taps navigate home and expand again; scrolling tucks that replay. Desktop
+retains hover/focus motion. Keyboard input reveals navigation immediately; other taps reveal it early. Theme controls remain visible. At 320px, the same SVG is scaled to
+40px compact width to fit the expanded name beside the 44px theme target.

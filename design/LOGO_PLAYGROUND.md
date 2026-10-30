@@ -30,3 +30,10 @@ python3 -m http.server 3015 --bind 127.0.0.1 --directory design
 The controller exposes `open`, `close` and `destroy`. The playground and real header use the same implementation; this is live SVG motion, not a recorded animation. Temporary compiled modules and verification captures go into ignored `output/review/logo-isolation/`.
 
 The standalone wordmark remains at `public/images/rm-wordmark.svg`. No dependency on a matching installed font or an animation library is required. The supplied original mark is never overwritten.
+
+Mobile introduction (2026-10-30): every mobile page refresh starts with the full
+name, holds for five visible seconds, then folds into RM as navigation appears.
+Tapping RM still navigates home and replays the expansion; this replay stays open
+until scrolling or another interaction. Desktop keeps hover/focus expansion.
+Reduced motion shows the compact mark and navigation immediately. The standalone
+study includes a five-second replay control alongside every earlier easing preset.

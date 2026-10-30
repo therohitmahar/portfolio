@@ -34,6 +34,9 @@ export function bindWordmarkMotion(
   let position = 0;
   let generation = 0;
   let enabled = false;
+  let compactWidth = "44px";
+  let expandedWidth = fullWidth;
+  let intro = root.closest(".site-header") && document.documentElement.dataset.brandIntro === "pending";
   const transform = (x: number) => `translateX(${x}px)`;
   const letterX = (group: SVGGElement, open: boolean) =>
     parseFloat(
@@ -43,7 +46,7 @@ export function bindWordmarkMotion(
     );
 
   function pose(open: boolean) {
-    root.style.width = open ? fullWidth : "44px";
+    root.style.width = open ? expandedWidth : compactWidth;
     mGroups.forEach((group) => {
       group.style.transform = transform(open ? mShift : 0);
     });
@@ -86,8 +89,8 @@ export function bindWordmarkMotion(
   }
   function buildEffects() {
     add(root, [
-      { width: "44px", easing: "cubic-bezier(.4, 0, .2, 1)" },
-      { width: fullWidth },
+      { width: compactWidth, easing: "cubic-bezier(.4, 0, .2, 1)" },
+      { width: expandedWidth },
     ]);
     mGroups.forEach((group) =>
       add(
@@ -161,24 +164,26 @@ export function bindWordmarkMotion(
   }
   function configure() {
     clear();
-    if (!pointer.matches || reduced.matches || !root.animate) return;
+    compactWidth = getComputedStyle(root).getPropertyValue("--logo-width").trim() || "44px";
+    expandedWidth = `${parseFloat(compactWidth) * parseFloat(fullWidth) / 44}px`;
+    if (reduced.matches || !root.animate) return;
     enabled = true;
     root.dataset.motionControlled = "true";
-    seek(identity!.matches(":hover, :focus-visible"));
+    seek(!!intro || (pointer.matches && identity!.matches(":hover, :focus-visible")));
   }
   const enter = () => {
-    if (!enabled) return;
+    if (!enabled || intro || !pointer.matches) return;
     if (identity!.matches(":focus-visible")) seek(true);
     else play(true);
   };
   const leave = () => {
-    if (!identity!.matches(":focus-visible")) play(false);
+    if (pointer.matches && !intro && !identity!.matches(":focus-visible")) play(false);
   };
   const focus = () => {
-    if (enabled && identity!.matches(":focus-visible")) seek(true);
+    if (enabled && pointer.matches && identity!.matches(":focus-visible")) seek(true);
   };
   const blur = () => {
-    if (enabled && !identity!.matches(":hover")) seek(false);
+    if (enabled && !intro && !identity!.matches(":hover")) seek(false);
   };
   identity.addEventListener("pointerenter", enter);
   identity.addEventListener("pointerleave", leave);
@@ -186,9 +191,17 @@ export function bindWordmarkMotion(
   identity.addEventListener("focusout", blur);
   pointer.addEventListener("change", configure);
   reduced.addEventListener("change", configure);
+  window.addEventListener("resize", configure);
   configure();
   return {
     open: () => play(true),
+    startIntro: () => { intro = true; play(true); },
+    seek,
+    finishIntro: (immediate = false) => {
+      intro = false;
+      if (immediate || reduced.matches) seek(false);
+      else play(false);
+    },
     close: () => play(false),
     destroy() {
       identity.removeEventListener("pointerenter", enter);
@@ -197,6 +210,7 @@ export function bindWordmarkMotion(
       identity.removeEventListener("focusout", blur);
       pointer.removeEventListener("change", configure);
       reduced.removeEventListener("change", configure);
+      window.removeEventListener("resize", configure);
       clear();
     },
   };

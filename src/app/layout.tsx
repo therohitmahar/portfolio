@@ -28,7 +28,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <meta
           name="color-scheme"
@@ -40,6 +40,7 @@ export default function RootLayout({
             __html: `try{var s=localStorage.getItem("portfolio-color-scheme");if(s==="light"||s==="dark")document.querySelector('meta[name="color-scheme"]').content=s}catch{}`,
           }}
         />
+        <script dangerouslySetInnerHTML={{ __html: `try{if(!matchMedia("(min-width: 900px) and (hover: hover) and (pointer: fine)").matches&&!matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.dataset.brandIntro="pending";setTimeout(function(){if(document.documentElement.dataset.brandIntro==="pending"&&!document.querySelector(".brand-logo[data-motion-controlled]"))delete document.documentElement.dataset.brandIntro},12000)}}catch{}` }} />
       </head>
       <body>
         <a className="skip-link" href="#main">

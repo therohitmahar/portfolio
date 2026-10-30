@@ -13,7 +13,15 @@ export default function BrandLogo() {
   useLayoutEffect(() => {
     if (!mark.current) return;
     const motion = bindWordmarkMotion(mark.current);
-    return () => motion?.destroy();
+    const finish = (event: Event) => motion?.finishIntro((event as CustomEvent<boolean>).detail);
+    const open = () => motion?.startIntro();
+    document.addEventListener("brand-intro-open", open);
+    document.addEventListener("brand-intro-end", finish);
+    return () => {
+      document.removeEventListener("brand-intro-open", open);
+      document.removeEventListener("brand-intro-end", finish);
+      motion?.destroy();
+    };
   }, []);
   const id = `wordmark-${useId().replace(/[^a-zA-Z0-9_-]/g, "")}`;
   const scale = glyphs.displayWidth / glyphs.compactWidth;
