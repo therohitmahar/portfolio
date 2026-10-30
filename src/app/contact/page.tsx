@@ -21,7 +21,7 @@ export default function ContactPage() {
         <a className="contact-address" href="mailto:therohitmahar@gmail.com">
           therohitmahar@gmail.com
         </a>
-        <div className="inline-links">
+        <div className="contact-actions">
           <a className="primary-link" href="mailto:therohitmahar@gmail.com">
             Write an email <ArrowIcon />
           </a>

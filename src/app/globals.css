@@ -1118,22 +1118,44 @@ ol {
   text-decoration: none;
   overflow-wrap: anywhere;
 }
-.contact-primary > .inline-links {
-  margin: var(--space-6) 0 var(--space-5);
+.contact-actions {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  align-items: center;
+  gap: var(--space-2) var(--space-5);
+  margin: var(--space-6) 0 var(--space-2);
+}
+.contact-actions .button-secondary {
+  justify-self: start;
 }
 .copy-action {
-  display: flex;
-  align-items: center;
-  gap: var(--space-4);
-  flex-wrap: wrap;
+  display: contents;
 }
 .copy-action [role="status"] {
+  grid-column: 1 / -1;
+  min-width: 0;
+  min-height: 3em;
   font-size: var(--type-caption);
-  max-width: 300px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
   color: var(--muted);
 }
-.copy-action [role="status"]:empty {
-  display: none;
+@media (max-width: 650px) {
+  .contact-actions {
+    column-gap: var(--space-3);
+  }
+}
+@media (max-width: 400px) {
+  .contact-actions {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .contact-actions .primary-link,
+  .contact-actions .button-secondary {
+    justify-self: stretch;
+  }
+  .contact-actions .primary-link {
+    justify-content: space-between;
+  }
 }
 .contact-options {
   display: grid;
