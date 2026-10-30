@@ -1,4 +1,6 @@
-import { useId, type CSSProperties } from "react";
+"use client";
+import { useId, useLayoutEffect, useRef, type CSSProperties } from "react";
+import { bindWordmarkMotion, wordmarkTiming } from "@/lib/wordmark-motion";
 import glyphs from "@/data/brand-glyphs.json";
 
 type Glyph = keyof typeof glyphs.paths;
@@ -7,12 +9,16 @@ type Glyph = keyof typeof glyphs.paths;
 const tuckEdge = (glyph: Glyph) => glyphs.rightEdges[glyph] - 12;
 
 export default function BrandLogo() {
+  const mark = useRef<HTMLSpanElement>(null);
+  useLayoutEffect(() => {
+    if (!mark.current) return;
+    const motion = bindWordmarkMotion(mark.current);
+    return () => motion?.destroy();
+  }, []);
   const id = `wordmark-${useId().replace(/[^a-zA-Z0-9_-]/g, "")}`;
   const scale = glyphs.displayWidth / glyphs.compactWidth;
   const variables = {
     "--wordmark-width": `${glyphs.expandedWidth * scale}px`,
-    "--logo-svg-height": `${glyphs.height * scale}px`,
-    "--logo-svg-origin": `${(280 - glyphs.minY) * scale}px`,
     "--monogram-m-shift": `${glyphs.mShift}px`,
   } as CSSProperties;
   const clips = [
@@ -36,12 +42,17 @@ export default function BrandLogo() {
     const position = {
       "--letter-open-x": `${letter.x - parentX}px`,
       "--letter-closed-x": `${edge - glyphs.rightEdges[glyph] - 2}px`,
-      "--letter-open-delay": `${160 + index * 110}ms`,
-      "--letter-close-delay": `${(tail.length - 1 - index) * 110}ms`,
+      "--letter-open-delay": `${index * wordmarkTiming.stagger}ms`,
+      "--letter-close-delay": `${(tail.length - 1 - index) * wordmarkTiming.stagger}ms`,
     } as CSSProperties;
     return (
       <g clipPath={`url(#${id}-${word}-${index})`}>
-        <g className="brand-letter-step" style={position}>
+        <g
+          className="brand-letter-step"
+          style={position}
+          data-word={word}
+          data-step={index}
+        >
           {chain(word, tail, glyph, letter.x, index + 1)}
           <path d={glyphs.paths[glyph]} />
         </g>
@@ -50,18 +61,32 @@ export default function BrandLogo() {
   }
 
   return (
-    <span className="brand-logo" style={variables} aria-hidden="true">
+    <span
+      className="brand-logo"
+      ref={mark}
+      style={variables}
+      aria-hidden="true"
+    >
       <svg
         className="brand-monogram"
         xmlns="http://www.w3.org/2000/svg"
-        viewBox={`0 ${glyphs.minY} ${glyphs.expandedWidth} ${glyphs.height}`}
-        width={glyphs.expandedWidth * scale}
-        height={glyphs.height * scale}
+        viewBox={`0 0 ${glyphs.compactWidth} 560`}
+        width={glyphs.displayWidth}
+        height={27}
         aria-hidden="true"
         focusable="false"
         fillRule="evenodd"
       >
         <defs>
+          {/* Only the missing arch is occluded; the supplied visible m is drawn directly. */}
+          <clipPath id={`${id}-m-occlusion`} clipPathUnits="userSpaceOnUse">
+            <rect
+              x={glyphs.mRevealEdge}
+              y={glyphs.minY - 20}
+              width={glyphs.expandedWidth}
+              height={glyphs.height + 40}
+            />
+          </clipPath>
           {clips.flatMap(({ word, root, tail }) =>
             tail.map((_, index) => {
               const parent =
@@ -83,15 +108,40 @@ export default function BrandLogo() {
             }),
           )}
         </defs>
-        {/* Full m sits behind r when compact, then slides out as one rigid shape. */}
-        <g className="brand-move-m" fill="var(--ink)">
-          {chain("mahar", glyphs.lastTail, "m", glyphs.mShift)}
-          <path className="monogram-m" d={glyphs.paths.m} />
-        </g>
         <g fill="var(--brand-slash)">
           {chain("rohit", glyphs.firstTail, "r", 0)}
-          <path className="monogram-r" d={glyphs.paths.r} />
         </g>
+        <g fill="var(--ink)">
+          <g clipPath={`url(#${id}-m-occlusion)`}>
+            <g className="brand-move-m">
+              <path
+                className="m-hidden-arch"
+                d={glyphs.mCompletion}
+                stroke="var(--ink)"
+                strokeWidth={2}
+              />
+            </g>
+          </g>
+          <g className="brand-move-m">
+            {chain("mahar", glyphs.lastTail, "m", glyphs.mShift)}
+            <path className="monogram-m" d={glyphs.paths.m} />
+          </g>
+        </g>
+      </svg>
+      <svg
+        className="brand-monogram brand-anchor"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox={`0 0 ${glyphs.compactWidth} 560`}
+        width={glyphs.displayWidth}
+        height={27}
+        aria-hidden="true"
+        focusable="false"
+      >
+        <path
+          className="monogram-r"
+          fill="var(--brand-slash)"
+          d={glyphs.paths.r}
+        />
       </svg>
     </span>
   );

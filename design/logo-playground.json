@@ -1,0 +1,49 @@
+{
+  "previousM": "M20 540V40H138V117C186 55 254 24 330 24C413 24 475 60 516 109C563 51 620 20 694 20C814 20 900 108 900 243V540H782V266C782 182 743 139 679 139C611 139 558 189 558 272V540H440V269C440 187 402 139 338 139C226 139 138 203 138 290V540Z",
+  "presets": [
+    {
+      "id": "",
+      "label": "One gesture \u00b7 synchronized",
+      "motion": {}
+    },
+    {
+      "id": "staged-gentle",
+      "label": "Gentle stagger \u00b7 earlier two-phase version",
+      "motion": {
+        "coordinated": false,
+        "letterDuration": 260,
+        "stagger": 100
+      }
+    },
+    {
+      "id": "ease-out",
+      "label": "Ease-out cubic",
+      "motion": {
+        "letterEase": "cubic-bezier(.215,.61,.355,1)",
+        "coordinated": false,
+        "letterDuration": 260,
+        "stagger": 100
+      }
+    },
+    {
+      "id": "power-out",
+      "label": "Power ease-out \u00b7 earlier experiment",
+      "motion": {
+        "letterDuration": 220,
+        "stagger": 90,
+        "letterEase": "cubic-bezier(.22,1,.36,1)",
+        "coordinated": false
+      }
+    },
+    {
+      "id": "before-timing",
+      "label": "Short steps \u00b7 previous timing",
+      "motion": {
+        "letterDuration": 110,
+        "stagger": 110,
+        "letterEase": "cubic-bezier(.4,0,.2,1)",
+        "coordinated": false
+      }
+    }
+  ]
+}

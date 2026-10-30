@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "playground:logo": "node scripts/render-logo-study.mjs"
   },
   "dependencies": {
     "lenis": "1.3.27",

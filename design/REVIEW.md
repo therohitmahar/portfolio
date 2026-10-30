@@ -238,3 +238,24 @@ Replaced the partial m outline with a full three-stem path. In compact state its
 | o reads heavier than straight-stem letters | Slightly expanded inner counter | Compensate optically while preserving the outer shape |
 
 Source and standalone SVG remain in sync. Production build/typecheck passed before the final optical adjustments; the preview is rebuilt again after those changes. No browser interaction or screenshot tests were run, per the user's preference to verify visually themselves.
+
+## Original identity, curve study, preserved playground, and one-gesture tuck
+
+The user re-enabled focused Playwright review and asked for a separate comparison file. The isolated study compares the supplied original, the filled-gap regression, a balanced complete m, and native animation presets in both themes. The original r/m exposed paths and compact viewport are now exact. Only a hidden m arch is added, behind a stationary occlusion curtain; it emerges as m slides out from under r. The arch is narrower than the previous extension. A separate fixed SVG keeps r crisp and stationary while other letters move.
+
+| Before | After | Why |
+| --- | --- | --- |
+| Complete m fills the compact mark's curved gap | Original visible m drawn unchanged, missing arch hidden until separation | Preserve the actual supplied logo |
+| Overextended first m arch | Balanced hidden arch with equal counter spacing | Make the complete m read naturally |
+| Short steps with CSS delay stalls | Reversible native timeline, overlapping ordered stages | Continue smoothly through hover reversals |
+| Letters finish before m approaches r | Both motions share the full 560ms gesture | Apply the requested single-step action |
+| Finished native effects retain SVG raster layers | Commit static endpoint poses and cancel effects | Restore original crisp pixels at rest |
+| Ephemeral curve experiments | Versioned self-contained playground, presets, original reference and generator | Preserve everything for later Easter-egg reuse |
+
+The standalone reference comparisons matched the original compact PNG pixels in both themes. The real header comparison uses the same parent and coordinates for the reference to avoid fractional-layout raster differences between separate overlay elements. Earlier outside-parent pixel comparisons were not valid identity comparisons; moving the reference into the same renderer corrected the fixture. Canonical source geometry remains unchanged.
+
+Playground motion checks cover closing order (3,2,1,0 per word), fixed r geometry, shared-start m/letter movement, quick and mid-gesture reversal without position reset, effects released at both endpoints, and return to the original compact pixels. A local headed-Chrome sample measured approximately 2.2px maximum first-o displacement per frame for the synchronized curve versus 8.5px for the old short steps; these are diagnostic observations from that run, not a frame-rate or device guarantee. Intermediate poses were visually inspected. All five curve/timing presets, including the earlier staged version, are retained rather than overwritten.
+
+Production build/typecheck and targeted lint were run. Final homepage/header checks and their exact results are recorded in ignored `output/review/logo-isolation/`; no unrelated pages are part of this logo review. The playground is available separately on port 3015, with reusable source in `src/lib/wordmark-motion.ts`. No third-party animation dependency is added. Inspiration was checked against React Bits Split Text's stagger/easing controls and Emil Kowalski's moving-object/reversal guidance; the custom tuck/occlusion logic remains ours.
+
+Final verification after synchronization: the production build/typecheck and targeted lint passed. Homepage/header Playwright checks passed at 1440px/light and 900px/dark with a desktop pointer, plus 390px/dark and 320px/light with touch emulation. Each compact mark matched the supplied reference pixels in the same renderer, including after the completed tuck. Desktop expansion kept the r geometry and nav position fixed; keyboard expansion and reduced-motion switching were immediate. No horizontal overflow or page errors were found. The synchronized playground run confirmed m and the first closing letter both begin moving within the first sampled frames, with closing order 3/2/1/0 retained in both words. Fast reversal returned directly to the original mark without a delayed second phase. Final expanded header screenshots and intermediate synchronized frames were visually inspected. The earlier staged flow and four other presets remain available in the standalone playground. No unrelated routes were visited.
