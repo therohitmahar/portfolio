@@ -104,4 +104,6 @@ document.querySelectorAll('.collapse').forEach(b=>b.addEventListener('click',()=
 document.querySelectorAll('.intro').forEach(b=>b.addEventListener('click',()=>{const motion=motions.get(b.parentElement.querySelector('.motion-stage .identity'));if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;motion?.seek(true);clearTimeout(b.introTimer);b.introTimer=setTimeout(()=>motion?.finishIntro(),5000);}));
 </script></body></html>`;
 fs.writeFileSync("design/logo-study.html", html);
-console.log("Created design/logo-study.html from the actual logo component.");
+fs.mkdirSync("public/playground", { recursive: true });
+fs.writeFileSync("public/playground/logo-study.html", html);
+console.log("Created local and public logo playgrounds from the actual logo component.");

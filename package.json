@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "node scripts/render-logo-study.mjs && next build",
     "start": "next start",
     "lint": "eslint",
     "playground:logo": "node scripts/render-logo-study.mjs"

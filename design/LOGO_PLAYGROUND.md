@@ -1,5 +1,10 @@
 # RM motion playground
 
+Production URL: https://rohitmahar.vercel.app/playground/logo-study.html
+
+The build regenerates `public/playground/logo-study.html` from the same source
+as the offline copy. It is publicly accessible without a main-navigation link.
+
 Open `logo-study.html` directly, or use the running preview at http://localhost:3015/logo-study.html. It is a self-contained file, separate from the portfolio navigation, and can become an Easter egg later.
 
 The playground keeps the supplied original mark, the earlier filled-gap regression, the previous extended m, the restored complete m, both colour schemes, and all of these motion presets:
