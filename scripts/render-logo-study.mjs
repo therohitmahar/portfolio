@@ -107,3 +107,7 @@ fs.writeFileSync("design/logo-study.html", html);
 fs.mkdirSync("public/playground", { recursive: true });
 fs.writeFileSync("public/playground/logo-study.html", html);
 console.log("Created local and public logo playgrounds from the actual logo component.");
+
+// Keep copied code readable and identical to the preview runtime, even in a minified build.
+const runtimeSource = fs.readFileSync("src/lib/playground/runtime.js", "utf8").replace(/^export /m, "");
+fs.writeFileSync("src/lib/playground/runtime-source.json", JSON.stringify(runtimeSource) + "\n");

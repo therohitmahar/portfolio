@@ -6,8 +6,10 @@ import ThemeToggle from "./ThemeToggle";
 import BrandSlash from "./BrandSlash";
 import ArrowIcon from "./ArrowIcon";
 import BrandLogo from "./BrandLogo";
+import useLogoPlayground from "./playground/useLogoPlayground";
 export default function SiteHeader() {
   const pathname = usePathname();
+  const playground = useLogoPlayground();
   const nav = useRef<HTMLElement>(null);
   const underline = useRef<HTMLSpanElement>(null);
   const instant = useRef(true);
@@ -120,13 +122,16 @@ export default function SiteHeader() {
   }, [pathname]);
   return (
     <header className="site-header">
-      <Link className="identity" href="/" aria-label="Rohit Mahar — home" onClick={() => {
+      <Link className="identity" href="/" aria-label="Rohit Mahar — home" {...playground.props} onClick={(event) => {
+        if (playground.props.onClick(event)) return;
         if (matchMedia("(min-width: 900px) and (hover: hover) and (pointer: fine)").matches) return;
         returningHome.current = pathname !== "/";
         document.dispatchEvent(new CustomEvent("brand-intro-request"));
       }}>
         <BrandLogo />
       </Link>
+      <span id="logo-playground-help" className="sr-only">Hold the logo for four seconds, or press Shift and Enter, to open the animation playground.</span>
+      {playground.countdown && <div className="logo-countdown" role="status"><span>{playground.countdown.kind === "hold" ? "Keep holding · " : "Playground in "}{playground.countdown.seconds}s</span>{playground.countdown.kind === "taps" ? <button type="button" onClick={playground.cancel}>Cancel</button> : <span className="logo-countdown-hint">Release to cancel</span>}</div>}
       <nav
         aria-label="Main navigation"
         ref={nav}

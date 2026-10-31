@@ -176,3 +176,29 @@ hold for five seconds of visible-tab time, and tuck while navigation is revealed
 Logo taps navigate home and expand again; scrolling tucks that replay. Desktop
 retains hover/focus motion. Keyboard input reveals navigation immediately; other taps reveal it early. Theme controls remain visible. At 320px, the same SVG is scaled to
 40px compact width to fit the expanded name beside the 44px theme target.
+
+
+## Wordmark playground extension — October 31
+
+`/playground` extends this system as an editing surface. It retains Arial, the
+existing appearance tokens, lowercase slash heading, flat canvas, thin rules,
+visible focus and pale-accent primary actions. Its local CSS defines a desktop
+preview/settings grid and stacks preview, transport and settings below 750px.
+The canvas's editable colours belong to the exported artwork, not the site's
+light/dark palette. The 26 SVG lowercase glyphs are artwork, not a replacement
+interface typeface. Export and alphabet sections remain below the workspace.
+
+One normalized playhead synchronizes the large and navbar-size previews; ordered
+clipping and translation replace opacity-based letter disappearance. Playback is
+explicit, with pause, reverse, seek, speed and loop controls. The standalone
+runtime is shared by both previews and both generated code formats, while the
+approved header renderer and its motion controller retain their existing roles.
+
+The header logo additionally opens this route after a four-second desktop hold
+(release cancels), or focused Shift+Enter. On touch, seven taps within thirty
+seconds start a three-second countdown with Cancel. Ordinary logo clicks/taps
+retain home navigation. No primary-navigation or footer entry is added. The
+original comparison archive remains at `/playground/logo-study.html`.
+Implementation, source regeneration and evidence are recorded in
+`PLAYGROUND.md` and `LOGO_PLAYGROUND.md`; these route-specific decisions do not
+replace the incumbent system or establish a new visual world.
